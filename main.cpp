@@ -1,4 +1,5 @@
-﻿#include "framework.h"
+﻿#include "pch.h"
+#include "framework.h"
 #include "study_cpp_win_game_framework.h"
 #include "CCore.h"
 
