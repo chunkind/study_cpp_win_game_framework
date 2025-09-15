@@ -12,6 +12,7 @@ public:
 private:
 	HWND m_hWnd;
 	POINT m_ptResolution;
+	HDC m_hDC;
 
 public:
 	int init(HWND _hWnd, POINT _ptResolution);
