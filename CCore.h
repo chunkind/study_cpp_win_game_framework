@@ -13,6 +13,10 @@ public:
 	void progress();
 
 private:
+	void update();
+	void render();
+
+private:
 	CCore();
 	~CCore();
 };

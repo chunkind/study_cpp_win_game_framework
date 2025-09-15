@@ -17,6 +17,9 @@
     <Filter Include="Engine\02. Core">
       <UniqueIdentifier>{8f8cb044-4fab-4dfe-bd2e-e38bb855f878}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\04. Object">
+      <UniqueIdentifier>{4e5cfbf0-3e8d-4a82-a339-3c49ef04a24d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -35,6 +38,9 @@
       <Filter>Engine\02. Core</Filter>
     </ClInclude>
     <ClInclude Include="pch.h" />
+    <ClInclude Include="CObject.h">
+      <Filter>Engine\04. Object</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="study_cpp_win_game_framework.rc">
@@ -53,6 +59,9 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="CCore.cpp">
       <Filter>Engine\02. Core</Filter>
+    </ClCompile>
+    <ClCompile Include="CObject.cpp">
+      <Filter>Engine\04. Object</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

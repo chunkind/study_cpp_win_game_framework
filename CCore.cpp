@@ -1,6 +1,8 @@
 #include "pch.h"
-
 #include "CCore.h"
+#include "CObject.h"
+
+CObject g_obj;
 
 CCore::CCore()
 	: m_hWnd(0)
@@ -25,10 +27,36 @@ int CCore::init(HWND _hWnd, POINT _ptResultution)
 
 	m_hDC = GetDC(m_hWnd);
 
+	g_obj.m_ptPos = POINT{ m_ptResolution.x / 2, m_ptResolution.y / 2 };
+	g_obj.m_ptScale = POINT{ 100, 100 };
+
 	return S_OK;
 }
 
 void CCore::progress()
 {
-	::Rectangle(m_hDC, 10, 10, 110, 110);
+	update();
+	render();
+}
+
+void CCore::update()
+{
+	if (GetAsyncKeyState(VK_LEFT) & 0x8000)
+	{
+		g_obj.m_ptPos.x -= 1;
+	}
+
+	if (GetAsyncKeyState(VK_RIGHT) & 0x8000)
+	{
+		g_obj.m_ptPos.x += 1;
+	}
+}
+
+void CCore::render()
+{
+	Rectangle(m_hDC
+		, g_obj.m_ptPos.x - g_obj.m_ptScale.x / 2
+		, g_obj.m_ptPos.y - g_obj.m_ptScale.y / 2
+		, g_obj.m_ptPos.x + g_obj.m_ptScale.x / 2
+		, g_obj.m_ptPos.y + g_obj.m_ptScale.y / 2);
 }
