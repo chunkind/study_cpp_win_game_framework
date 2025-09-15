@@ -145,6 +145,9 @@
     <Image Include="small.ico" />
     <Image Include="study_cpp_win_game_framework.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="define.h" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

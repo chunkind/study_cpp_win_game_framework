@@ -2,13 +2,7 @@
 
 class CCore
 {
-public:
-	static CCore* GetInst()
-	{
-		static CCore core;
-		return &core;
-	}
-
+	SINGLE(CCore)
 private:
 	HWND m_hWnd;
 	POINT m_ptResolution;

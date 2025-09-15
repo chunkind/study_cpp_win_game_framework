@@ -55,4 +55,9 @@
       <Filter>Engine\02. Core</Filter>
     </ClCompile>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="define.h">
+      <Filter>Engine\01. Header</Filter>
+    </None>
+  </ItemGroup>
 </Project>
