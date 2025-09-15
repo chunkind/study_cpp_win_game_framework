@@ -1,7 +1,9 @@
 ﻿#include "framework.h"
 #include "study_cpp_win_game_framework.h"
+#include "CCore.h"
 
 HINSTANCE hInst;
+HWND g_hwnd;
 
 ATOM                MyRegisterClass(HINSTANCE hInstance);
 BOOL                InitInstance(HINSTANCE, int);
@@ -21,14 +23,27 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
     HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_STUDYCPPWINGAMEFRAMEWORK));
 
+    if (FAILED(CCore::GetInst()->init(g_hwnd, POINT{ 1280, 768 })))
+    {
+        MessageBox(nullptr, L"Core instance init fail.", L"ERROR", MB_OK);
+        return FALSE;
+    }
+
     MSG msg;
 
-    while (GetMessage(&msg, nullptr, 0, 0))
+    while (true)
     {
-        if (!TranslateAccelerator(msg.hwnd, hAccelTable, &msg))
+        if (PeekMessage(&msg, nullptr, 0, 0, PM_REMOVE))
         {
+            if (WM_QUIT == msg.message)
+                break;
+
             TranslateMessage(&msg);
             DispatchMessage(&msg);
+        }
+        else
+        {
+            CCore::GetInst()->progress();
         }
     }
 
@@ -60,16 +75,16 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 {
    hInst = hInstance; // 인스턴스 핸들을 전역 변수에 저장합니다.
 
-   HWND hWnd = CreateWindowW(L"Client", L"Client", WS_OVERLAPPEDWINDOW,
+   g_hwnd = CreateWindowW(L"Client", L"Client", WS_OVERLAPPEDWINDOW,
       CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, nullptr, nullptr, hInstance, nullptr);
 
-   if (!hWnd)
+   if (!g_hwnd)
    {
       return FALSE;
    }
 
-   ShowWindow(hWnd, nCmdShow);
-   UpdateWindow(hWnd);
+   ShowWindow(g_hwnd, nCmdShow);
+   UpdateWindow(g_hwnd);
 
    return TRUE;
 }
@@ -98,6 +113,14 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 
             EndPaint(hWnd, &ps);
         }
+        break;
+    case WM_KEYDOWN:
+        break;
+    case WM_LBUTTONDOWN:
+        break;
+    case WM_MOUSEMOVE:
+        break;
+    case WM_LBUTTONUP:
         break;
     case WM_DESTROY:
         PostQuitMessage(0);

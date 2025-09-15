@@ -11,6 +11,12 @@
     <Filter Include="Engine">
       <UniqueIdentifier>{f9f5a200-418a-475f-a7bf-df71feade00d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\01. Header">
+      <UniqueIdentifier>{fa5719db-d078-482b-8a3e-49d12a8c938f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\02. Core">
+      <UniqueIdentifier>{8f8cb044-4fab-4dfe-bd2e-e38bb855f878}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -24,6 +30,9 @@
     </ClInclude>
     <ClInclude Include="targetver.h">
       <Filter>Default</Filter>
+    </ClInclude>
+    <ClInclude Include="CCore.h">
+      <Filter>Engine\02. Core</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -41,5 +50,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="CCore.cpp">
+      <Filter>Engine\02. Core</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
