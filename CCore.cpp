@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "CCore.h"
 #include "CObject.h"
+#include <tchar.h>
 
 CObject g_obj;
 
@@ -35,6 +36,22 @@ int CCore::init(HWND _hWnd, POINT _ptResultution)
 
 void CCore::progress()
 {
+	static int callcount = 0;
+	++callcount;
+
+	static int iPrevCount = GetTickCount();
+	int iCurCount = GetTickCount();
+	if (iCurCount - iPrevCount > 1000)
+	{
+		iPrevCount = iCurCount;
+		callcount = 0;
+	}
+
+	wchar_t szBuff[500] = {};
+
+	swprintf_s(szBuff, L"callcount : %d, iPrevCount: %d, iCurCount: %d", callcount, iPrevCount, iCurCount);
+	SetWindowText(m_hWnd, szBuff);
+
 	update();
 	render();
 }
