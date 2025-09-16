@@ -26,6 +26,9 @@
     <Filter Include="Engine\03. Manager\TimeMgr">
       <UniqueIdentifier>{90821a06-a426-4711-8d00-834afa814813}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\03. Manager\KeyMgr">
+      <UniqueIdentifier>{7ad1446c-c2b4-4a47-a2ef-eae5245f31a0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -53,6 +56,9 @@
     <ClInclude Include="CTimeMgr.h">
       <Filter>Engine\03. Manager\TimeMgr</Filter>
     </ClInclude>
+    <ClInclude Include="CKeyMgr.h">
+      <Filter>Engine\03. Manager\KeyMgr</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="study_cpp_win_game_framework.rc">
@@ -77,6 +83,9 @@
     </ClCompile>
     <ClCompile Include="CTimeMgr.cpp">
       <Filter>Engine\03. Manager\TimeMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="CKeyMgr.cpp">
+      <Filter>Engine\03. Manager\KeyMgr</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

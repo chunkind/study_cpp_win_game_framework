@@ -85,6 +85,5 @@ void CCore::render()
 		, int(vPos.x + vScale.x / 2.f)
 		, int(vPos.y + vScale.y / 2.f));
 
-	::BitBlt(m_hDC, 0, 0, m_ptResolution.x, m_ptResolution.y
-		, m_memDC, 0, 0, SRCCOPY);
+	::BitBlt(m_hDC, 0, 0, m_ptResolution.x, m_ptResolution.y, m_memDC, 0, 0, SRCCOPY);
 }
