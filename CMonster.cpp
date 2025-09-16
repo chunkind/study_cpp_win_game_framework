@@ -6,7 +6,7 @@
 CMonster::CMonster()
 	: m_vCenterPos(Vec2(0.f, 0.f))
 	, m_fSpeed(100.f)
-	, m_fMaxDistance(100.f)
+	, m_fMaxDistance(50.f)
 	, m_iDir(1)
 {
 }
