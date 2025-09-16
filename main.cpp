@@ -22,11 +22,11 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
         return FALSE;
     }
 
-    HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_STUDYCPPWINGAMEFRAMEWORK));
+    HACCEL hAccelTable = ::LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_STUDYCPPWINGAMEFRAMEWORK));
 
     if (FAILED(CCore::GetInst()->init(g_hwnd, POINT{ 1280, 768 })))
     {
-        MessageBox(nullptr, L"Core instance init fail.", L"ERROR", MB_OK);
+        ::MessageBox(nullptr, L"Core instance init fail.", L"ERROR", MB_OK);
         return FALSE;
     }
 
@@ -34,13 +34,13 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
     while (true)
     {
-        if (PeekMessage(&msg, nullptr, 0, 0, PM_REMOVE))
+        if (::PeekMessage(&msg, nullptr, 0, 0, PM_REMOVE))
         {
             if (WM_QUIT == msg.message)
                 break;
 
-            TranslateMessage(&msg);
-            DispatchMessage(&msg);
+            ::TranslateMessage(&msg);
+            ::DispatchMessage(&msg);
         }
         else
         {
@@ -62,21 +62,21 @@ ATOM MyRegisterClass(HINSTANCE hInstance)
     wcex.cbClsExtra     = 0;
     wcex.cbWndExtra     = 0;
     wcex.hInstance      = hInstance;
-    wcex.hIcon          = LoadIcon(hInstance, MAKEINTRESOURCE(IDI_STUDYCPPWINGAMEFRAMEWORK));
-    wcex.hCursor        = LoadCursor(nullptr, IDC_ARROW);
+    wcex.hIcon          = ::LoadIcon(hInstance, MAKEINTRESOURCE(IDI_STUDYCPPWINGAMEFRAMEWORK));
+    wcex.hCursor        = ::LoadCursor(nullptr, IDC_ARROW);
     wcex.hbrBackground  = (HBRUSH)(COLOR_WINDOW+1);
     wcex.lpszMenuName   = MAKEINTRESOURCEW(IDC_STUDYCPPWINGAMEFRAMEWORK);
     wcex.lpszClassName  = L"Client";
-    wcex.hIconSm        = LoadIcon(wcex.hInstance, MAKEINTRESOURCE(IDI_SMALL));
+    wcex.hIconSm        = ::LoadIcon(wcex.hInstance, MAKEINTRESOURCE(IDI_SMALL));
 
-    return RegisterClassExW(&wcex);
+    return ::RegisterClassExW(&wcex);
 }
 
 BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 {
    hInst = hInstance; // 인스턴스 핸들을 전역 변수에 저장합니다.
 
-   g_hwnd = CreateWindowW(L"Client", L"Client", WS_OVERLAPPEDWINDOW,
+   g_hwnd = ::CreateWindowW(L"Client", L"Client", WS_OVERLAPPEDWINDOW,
       CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, nullptr, nullptr, hInstance, nullptr);
 
    if (!g_hwnd)
@@ -84,8 +84,8 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
       return FALSE;
    }
 
-   ShowWindow(g_hwnd, nCmdShow);
-   UpdateWindow(g_hwnd);
+   ::ShowWindow(g_hwnd, nCmdShow);
+   ::UpdateWindow(g_hwnd);
 
    return TRUE;
 }
@@ -100,19 +100,19 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         switch (wmId)
         {
         case IDM_EXIT:
-            DestroyWindow(hWnd);
+            ::DestroyWindow(hWnd);
             break;
         default:
-            return DefWindowProc(hWnd, message, wParam, lParam);
+            return ::DefWindowProc(hWnd, message, wParam, lParam);
         }
     }
     break;
     case WM_PAINT:
     {
         PAINTSTRUCT ps;
-        HDC hdc = BeginPaint(hWnd, &ps);
+        HDC hdc = ::BeginPaint(hWnd, &ps);
 
-        EndPaint(hWnd, &ps);
+        ::EndPaint(hWnd, &ps);
     }
     break;
     case WM_KEYDOWN:
@@ -124,10 +124,10 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
     case WM_LBUTTONUP:
         break;
     case WM_DESTROY:
-        PostQuitMessage(0);
+        ::PostQuitMessage(0);
         break;
     default:
-        return DefWindowProc(hWnd, message, wParam, lParam);
+        return ::DefWindowProc(hWnd, message, wParam, lParam);
     }
     return 0;
 }
