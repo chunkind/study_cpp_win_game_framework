@@ -44,6 +44,9 @@
     <Filter Include="Engine\04. Object\Monster">
       <UniqueIdentifier>{9b3d1e4c-90a7-4182-8e99-4f378a39dca1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\04. Object\Missile">
+      <UniqueIdentifier>{b5d52516-e980-4a63-9055-9075eded1401}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -89,6 +92,9 @@
     <ClInclude Include="CMonster.h">
       <Filter>Engine\04. Object\Monster</Filter>
     </ClInclude>
+    <ClInclude Include="CMissile.h">
+      <Filter>Engine\04. Object\Missile</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="study_cpp_win_game_framework.rc">
@@ -131,6 +137,9 @@
     </ClCompile>
     <ClCompile Include="CMonster.cpp">
       <Filter>Engine\04. Object\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="CMissile.cpp">
+      <Filter>Engine\04. Object\Missile</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
