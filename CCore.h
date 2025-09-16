@@ -16,7 +16,6 @@ private:
 	void update();
 	void render();
 
-private:
-	CCore();
-	~CCore();
+public:
+	HWND GetMainHwnd() { return m_hWnd; }
 };

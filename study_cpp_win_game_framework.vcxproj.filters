@@ -20,6 +20,12 @@
     <Filter Include="Engine\04. Object">
       <UniqueIdentifier>{4e5cfbf0-3e8d-4a82-a339-3c49ef04a24d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\03. Manager">
+      <UniqueIdentifier>{d5591ace-6ffa-48c6-99ce-4e6963ba2964}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\03. Manager\TimeMgr">
+      <UniqueIdentifier>{90821a06-a426-4711-8d00-834afa814813}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -44,6 +50,9 @@
     <ClInclude Include="struct.h">
       <Filter>Engine\01. Header</Filter>
     </ClInclude>
+    <ClInclude Include="CTimeMgr.h">
+      <Filter>Engine\03. Manager\TimeMgr</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="study_cpp_win_game_framework.rc">
@@ -65,6 +74,9 @@
     </ClCompile>
     <ClCompile Include="CObject.cpp">
       <Filter>Engine\04. Object</Filter>
+    </ClCompile>
+    <ClCompile Include="CTimeMgr.cpp">
+      <Filter>Engine\03. Manager\TimeMgr</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
