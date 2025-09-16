@@ -63,6 +63,10 @@ void CCore::update()
 
 void CCore::render()
 {
+	::Rectangle(m_hDC
+		, -1, -1, m_ptResolution.x + 1, m_ptResolution.y + 1
+	);
+
 	Vec2 vPos = g_obj.GetPos();
 	Vec2 vScale = g_obj.GetScale();
 
