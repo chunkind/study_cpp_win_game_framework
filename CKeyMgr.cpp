@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "CKeyMgr.h"
+#include "CCore.h"
 
 int g_arrVK[(int)KEY::LAST] = {
 	VK_LEFT,
@@ -56,33 +57,54 @@ void CKeyMgr::init()
 
 void CKeyMgr::update()
 {
-	for (int i = 0; i < (int)KEY::LAST; ++i)
+	HWND hWnd = GetFocus();
+
+	if (nullptr != hWnd)
 	{
-		if (GetAsyncKeyState(g_arrVK[i]) & 0x8000)
+		for (int i = 0; i < (int)KEY::LAST; ++i)
 		{
-			if (m_vecKey[i].bPrevPush)
+			if (GetAsyncKeyState(g_arrVK[i]) & 0x8000)
 			{
-				m_vecKey[i].eState = KEY_STATE::HOLD;
+				if (m_vecKey[i].bPrevPush)
+				{
+					m_vecKey[i].eState = KEY_STATE::HOLD;
+				}
+				else
+				{
+					m_vecKey[i].eState = KEY_STATE::TAP;
+				}
+
+				m_vecKey[i].bPrevPush = true;
 			}
 			else
 			{
-				m_vecKey[i].eState = KEY_STATE::TAP;
-			}
+				if (m_vecKey[i].bPrevPush)
+				{
+					m_vecKey[i].eState = KEY_STATE::AWAY;
+				}
+				else
+				{
+					m_vecKey[i].eState = KEY_STATE::NONE;
+				}
 
-			m_vecKey[i].bPrevPush = true;
+				m_vecKey[i].bPrevPush = false;
+			}
 		}
-		else
+	}
+	else
+	{
+		for (int i = 0; i < (int)KEY::LAST; ++i)
 		{
-			if (m_vecKey[i].bPrevPush)
+			m_vecKey[i].bPrevPush = false;
+
+			if (KEY_STATE::TAP == m_vecKey[i].eState || KEY_STATE::HOLD == m_vecKey[i].eState)
 			{
 				m_vecKey[i].eState = KEY_STATE::AWAY;
 			}
-			else
+			else if (KEY_STATE::AWAY == m_vecKey[i].eState)
 			{
 				m_vecKey[i].eState = KEY_STATE::NONE;
 			}
-
-			m_vecKey[i].bPrevPush = false;
 		}
 	}
 }

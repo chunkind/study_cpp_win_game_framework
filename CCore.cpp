@@ -64,12 +64,11 @@ void CCore::update()
 
 	if (CKeyMgr::GetInst()->GetKeyState(KEY::LEFT) == KEY_STATE::HOLD)
 	{
-		vPos.x -= 1.f;
+		vPos.x -= 200.f * CTimeMgr::GetInst()->GetfDT();
 	}
-
 	if (CKeyMgr::GetInst()->GetKeyState(KEY::RIGHT) == KEY_STATE::HOLD)
 	{
-		vPos.x += 1.f;
+		vPos.x += 200.f * CTimeMgr::GetInst()->GetfDT();
 	}
 
 	g_obj.SetPos(vPos);
