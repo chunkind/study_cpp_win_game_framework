@@ -41,6 +41,9 @@
     <Filter Include="Engine\04. Object\Player">
       <UniqueIdentifier>{85b21e9b-7fef-4f0a-8d8f-5d4db269dd69}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\04. Object\Monster">
+      <UniqueIdentifier>{9b3d1e4c-90a7-4182-8e99-4f378a39dca1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -83,6 +86,9 @@
     <ClInclude Include="CPlayer.h">
       <Filter>Engine\04. Object\Player</Filter>
     </ClInclude>
+    <ClInclude Include="CMonster.h">
+      <Filter>Engine\04. Object\Monster</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="study_cpp_win_game_framework.rc">
@@ -122,6 +128,9 @@
     </ClCompile>
     <ClCompile Include="CPlayer.cpp">
       <Filter>Engine\04. Object\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="CMonster.cpp">
+      <Filter>Engine\04. Object\Monster</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
