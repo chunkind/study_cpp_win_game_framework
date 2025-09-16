@@ -50,12 +50,12 @@ void CCore::update()
 
 	if (::GetAsyncKeyState(VK_LEFT) & 0x8000)
 	{
-		vPos.x -= 0.01f;
+		vPos.x -= 100.f * fDT;
 	}
 
 	if (::GetAsyncKeyState(VK_RIGHT) & 0x8000)
 	{
-		vPos.x += 0.01f;
+		vPos.x += 100.f * fDT;
 	}
 
 	g_obj.SetPos(vPos);
