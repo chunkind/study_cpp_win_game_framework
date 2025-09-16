@@ -5,16 +5,10 @@
 class CMissile : public CObject
 {
 private:
-	float		m_fDir;
+	float		m_fTheta;
 
 public:
-	void SetDir(bool _bUp)
-	{
-		if (_bUp)
-			m_fDir = -1.f;
-		else
-			m_fDir = 1.f;
-	}
+	void SetDir(float _fTheta) { m_fTheta = _fTheta; }
 
 public:
 	virtual void update();
