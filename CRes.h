@@ -3,8 +3,8 @@
 class CRes
 {
 private:
-	wstring m_strKey;			// 리소스 키
-	wstring m_strRelativePath;	// 리소스 상대경로
+	wstring m_strKey;
+	wstring m_strRelativePath;
 
 public:
 	void SetKey(const wstring& _strKey) { m_strKey = _strKey; }
