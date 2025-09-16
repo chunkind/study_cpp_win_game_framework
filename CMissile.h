@@ -5,7 +5,7 @@
 class CMissile : public CObject
 {
 private:
-	float		m_fDir; // 위 아래 방향
+	float		m_fDir;
 
 public:
 	void SetDir(bool _bUp)
@@ -18,6 +18,7 @@ public:
 
 public:
 	virtual void update();
+	virtual void render(HDC _dc);
 
 public:
 	CMissile();
