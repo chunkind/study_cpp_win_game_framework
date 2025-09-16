@@ -6,22 +6,18 @@
 #include "CTimeMgr.h"
 #include "CMissile.h"
 #include "CPathMgr.h"
+#include "CResMgr.h"
 #include "CTexture.h"
 
 CPlayer::CPlayer()
 	:m_pTex(nullptr)
 {
-	m_pTex = new CTexture;
-
-	wstring strFilepath = CPathMgr::GetInst()->GetContentPath();
-	strFilepath += L"texture\\Player.bmp";
-	m_pTex->Load(strFilepath);
+	m_pTex = CResMgr::GetInst()->LoadTexture(L"PlayerTex", L"texture\\Player.bmp");
 }
 
 CPlayer::~CPlayer()
 {
-	if (nullptr != m_pTex)
-		delete m_pTex;
+
 }
 
 void CPlayer::update()
