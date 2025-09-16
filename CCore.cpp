@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "CCore.h"
 #include "CTimeMgr.h"
+#include "CKeyMgr.h"
 #include "CObject.h"
 
 CObject g_obj;
@@ -40,6 +41,7 @@ int CCore::init(HWND _hWnd, POINT _ptResultution)
 	::DeleteObject(hOldBit);
 
 	CTimeMgr::GetInst()->init();
+	CKeyMgr::GetInst()->init();
 
 	g_obj.SetPos(Vec2((float)(m_ptResolution.x / 2), (float)(m_ptResolution.y / 2)));
 	g_obj.SetScale(Vec2(100, 100));
@@ -50,6 +52,7 @@ int CCore::init(HWND _hWnd, POINT _ptResultution)
 void CCore::progress()
 {
 	CTimeMgr::GetInst()->update();
+	CKeyMgr::GetInst()->update();
 
 	update();
 	render();
