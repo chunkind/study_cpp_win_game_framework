@@ -4,6 +4,8 @@
 #include "CPlayer.h"
 #include "CMonster.h"
 #include "CCore.h"
+#include "CTexture.h"
+#include "CPathMgr.h"
 
 CScene_Start::CScene_Start()
 {

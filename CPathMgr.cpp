@@ -29,5 +29,4 @@ void CPathMgr::init()
 
 	wcscat_s(m_szContentPath, 255, L"\\bin\\content\\");
 
-	SetWindowText(CCore::GetInst()->GetMainHwnd(), m_szContentPath);
 }
