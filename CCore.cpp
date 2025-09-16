@@ -62,14 +62,14 @@ void CCore::update()
 {
 	Vec2 vPos = g_obj.GetPos();
 
-	if (::GetAsyncKeyState(VK_LEFT) & 0x8000)
+	if (CKeyMgr::GetInst()->GetKeyState(KEY::LEFT) == KEY_STATE::HOLD)
 	{
-		vPos.x -= 100.f * fDT;
+		vPos.x -= 1.f;
 	}
 
-	if (::GetAsyncKeyState(VK_RIGHT) & 0x8000)
+	if (CKeyMgr::GetInst()->GetKeyState(KEY::RIGHT) == KEY_STATE::HOLD)
 	{
-		vPos.x += 100.f * fDT;
+		vPos.x += 1.f;
 	}
 
 	g_obj.SetPos(vPos);
