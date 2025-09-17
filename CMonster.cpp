@@ -49,8 +49,9 @@ void CMonster::render(HDC _dc)
 	HBITMAP hbmOld = (HBITMAP)SelectObject(hdcTmp, hbmTmp);
 
 	Vec2 vPos = GetPos();
+	Vec2 vRenderPos = CCamera::GetInst()->GetRenderPos(vPos);
 
-	StretchBlt(hdcTmp
+	::StretchBlt(hdcTmp
 		, 0, 0
 		, iWidth, iHeight
 		, m_pTex->GetDC()
@@ -58,9 +59,9 @@ void CMonster::render(HDC _dc)
 		, -iWidth, -iHeight
 		, SRCCOPY);
 
-	TransparentBlt(_dc
-		, int(vPos.x - (float)(iWidth / 2))
-		, int(vPos.y - (float)(iHeight / 2))
+	::TransparentBlt(_dc
+		, int(vRenderPos.x - (float)(iWidth / 2))
+		, int(vRenderPos.y - (float)(iHeight / 2))
 		, iWidth, iHeight
 		, hdcTmp
 		, 0, 0
@@ -68,9 +69,9 @@ void CMonster::render(HDC _dc)
 		, RGB(255, 0, 255)
 	);
 
-	SelectObject(hdcTmp, hbmOld);
-	DeleteObject(hbmTmp);
-	DeleteDC(hdcTmp);
+	::SelectObject(hdcTmp, hbmOld);
+	::DeleteObject(hbmTmp);
+	::DeleteDC(hdcTmp);
 
 	component_render(_dc);
 }
