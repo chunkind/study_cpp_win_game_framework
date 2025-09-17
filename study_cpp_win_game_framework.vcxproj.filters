@@ -74,6 +74,9 @@
     <Filter Include="Engine\03. Manager\EventMgr">
       <UniqueIdentifier>{9080d97b-b66f-4844-87da-b9940c9448af}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\05. Scene\Scene_Tool">
+      <UniqueIdentifier>{cd20ce79-efc4-4a42-b719-61d6e3f0cb1f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -152,6 +155,9 @@
     <ClInclude Include="func.h">
       <Filter>Engine\01. Header</Filter>
     </ClInclude>
+    <ClInclude Include="CScene_Tool.h">
+      <Filter>Engine\05. Scene\Scene_Tool</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="study_cpp_win_game_framework.rc">
@@ -227,6 +233,9 @@
     </ClCompile>
     <ClCompile Include="func.cpp">
       <Filter>Engine\01. Header</Filter>
+    </ClCompile>
+    <ClCompile Include="CScene_Tool.cpp">
+      <Filter>Engine\05. Scene\Scene_Tool</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
