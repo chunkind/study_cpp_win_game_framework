@@ -35,6 +35,8 @@ void CScene_Start::Enter()
 	pObj->SetScale(Vec2(100.f, 100.f));
 	AddObject(pObj, GROUP_TYPE::PLAYER);
 
+	CCamera::GetInst()->SetTarget(pObj);
+
 	int iMonCount = 2;
 
 	float fMoveDist = 25.f;
