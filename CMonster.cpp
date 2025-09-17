@@ -1,9 +1,9 @@
 #include "pch.h"
 #include "CMonster.h"
-
 #include "CTimeMgr.h"
 #include "CResMgr.h"
 #include "CTexture.h"
+#include "CCollider.h";
 
 CMonster::CMonster()
 	: m_vCenterPos(Vec2(0.f, 0.f))
@@ -12,8 +12,8 @@ CMonster::CMonster()
 	, m_iDir(1)
 {
 	m_pTex = CResMgr::GetInst()->LoadTexture(L"EnemyTex", L"texture\\Enemy.bmp");
-
 	CreateCollider();
+	GetCollider()->SetScale(Vec2(40.f, 40.f));
 }
 
 CMonster::~CMonster()
@@ -69,4 +69,6 @@ void CMonster::render(HDC _dc)
 	SelectObject(hdcTmp, hbmOld);
 	DeleteObject(hbmTmp);
 	DeleteDC(hdcTmp);
+
+	component_render(_dc);
 }
