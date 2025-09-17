@@ -2,11 +2,22 @@
 
 class CCollider;
 
+union COLLIDER_ID
+{
+	struct {
+		UINT Left_id;
+		UINT Right_id;
+	};
+	ULONGLONG ID;
+};
+
 class CCollisionMgr
 {
 	SINGLE(CCollisionMgr)
 
 private:
+	map<ULONGLONG, bool> m_mapColInfo;
+
 	UINT m_arrCheck[(UINT)GROUP_TYPE::END];
 
 public:

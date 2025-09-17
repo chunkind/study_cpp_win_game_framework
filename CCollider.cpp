@@ -43,3 +43,15 @@ void CCollider::render(HDC _dc)
 		, (int)(m_vFinalPos.y + m_vScale.y / 2.f)
 	);
 }
+
+void CCollider::OnCollision(CCollider* _pOther)
+{
+}
+
+void CCollider::OnCollisionEnter(CCollider* _pOther)
+{
+}
+
+void CCollider::OnCollisionExit(CCollider* _pOther)
+{
+}

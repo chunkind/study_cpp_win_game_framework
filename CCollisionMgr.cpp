@@ -37,6 +37,8 @@ void CCollisionMgr::CollisionGroupUpdate(GROUP_TYPE _eLeft, GROUP_TYPE _eRight)
 	const vector<CObject*>& vecLeft = pCurScene->GetGroupObject(_eLeft);
 	const vector<CObject*>& vecRight = pCurScene->GetGroupObject(_eRight);
 
+	map<ULONGLONG, bool>::iterator iter;
+
 	for (size_t i = 0; i < vecLeft.size(); ++i)
 	{
 		if (nullptr == vecLeft[i]->GetCollider())
@@ -46,19 +48,48 @@ void CCollisionMgr::CollisionGroupUpdate(GROUP_TYPE _eLeft, GROUP_TYPE _eRight)
 
 		for (size_t j = 0; j < vecRight.size(); ++j)
 		{
-			if (nullptr == vecRight[j]->GetCollider()
-				|| vecLeft[i] == vecRight[j])
+			if (nullptr == vecRight[j]->GetCollider() || vecLeft[i] == vecRight[j])
 			{
 				continue;
 			}
 
-			if (IsCollision(vecLeft[i]->GetCollider(), vecRight[j]->GetCollider()))
-			{
+			CCollider* pLeftCol = vecLeft[i]->GetCollider();
+			CCollider* pRightCol = vecRight[j]->GetCollider();
 
+			COLLIDER_ID ID;
+			ID.Left_id = pLeftCol->GetID();
+			ID.Right_id = pRightCol->GetID();
+
+			iter = m_mapColInfo.find(ID.ID);
+
+			if (m_mapColInfo.end() == iter)
+			{
+				m_mapColInfo.insert(make_pair(ID.ID, false));
+				iter = m_mapColInfo.find(ID.ID);
+			}
+
+			if (IsCollision(pLeftCol, pRightCol))
+			{
+				if (iter->second)
+				{
+					pLeftCol->OnCollision(pRightCol);
+					pRightCol->OnCollision(pLeftCol);
+				}
+				else
+				{
+					pLeftCol->OnCollisionEnter(pRightCol);
+					pRightCol->OnCollisionEnter(pLeftCol);
+					iter->second = true;
+				}
 			}
 			else
 			{
-
+				if (iter->second)
+				{
+					pLeftCol->OnCollisionExit(pRightCol);
+					pRightCol->OnCollisionExit(pLeftCol);
+					iter->second = false;
+				}
 			}
 		}
 	}
