@@ -75,5 +75,10 @@ void CMonster::render(HDC _dc)
 
 void CMonster::OnCollisionEnter(CCollider* _pOther)
 {
+	CObject* pOtherObj = _pOther->GetObj();
 
+	if (pOtherObj->GetName() == L"player")
+	{
+		// 죽으면 삭제하는 코드...
+	}
 }
