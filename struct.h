@@ -34,6 +34,11 @@ public:
 	{
 		return Vec2(x + _vOther.x, y + _vOther.y);
 	}
+	void operator += (Vec2 _vOther)
+	{
+		x += _vOther.x;
+		y += _vOther.y;
+	}
 	Vec2 operator - (Vec2 _vOther)
 	{
 		return Vec2(x - _vOther.x, y - _vOther.y);
