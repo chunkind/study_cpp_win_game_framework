@@ -10,6 +10,7 @@ CAnimation::CAnimation()
 	, m_pTex(nullptr)
 	, m_iCurFrm(0)
 	, m_fAccTime(0.f)
+	, m_bFinish(false)
 {
 }
 
@@ -19,6 +20,9 @@ CAnimation::~CAnimation()
 
 void CAnimation::update()
 {
+	if (m_bFinish)
+		return;
+
 	m_fAccTime += fDT;
 
 	if (m_vecFrm[m_iCurFrm].fDuration < m_fAccTime)
@@ -27,15 +31,21 @@ void CAnimation::update()
 
 		if (m_vecFrm.size() <= m_iCurFrm)
 		{
-			m_iCurFrm = 0;
+			m_iCurFrm = -1;
+			m_bFinish = true;
+			m_fAccTime = 0.f;
+			return;
 		}
 
-		m_fAccTime = 0.f;
+		m_fAccTime = m_fAccTime - m_vecFrm[m_iCurFrm].fDuration;
 	}
 }
 
 void CAnimation::render(HDC _dc)
 {
+	if (m_bFinish)
+		return;
+
 	CObject* pObj = m_pAnimator->GetObj();
 	Vec2 vPos = pObj->GetPos();
 

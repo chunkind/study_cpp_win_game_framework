@@ -21,7 +21,7 @@ CPlayer::CPlayer()
 
 	CreateAnimator();
 	GetAnimator()->CreateAnimation(L"WALK_DOWN", pTex, Vec2(0.f, 260.f), Vec2(60.f, 65.f), Vec2(60.f, 0.f), 0.1f, 10);
-	GetAnimator()->Play(L"WALK_DOWN");
+	GetAnimator()->Play(L"WALK_DOWN", true);
 }
 
 CPlayer::~CPlayer()

@@ -19,9 +19,17 @@ private:
 	vector<tAnimFrm> m_vecFrm;
 	int m_iCurFrm;
 	float m_fAccTime;
+	bool m_bFinish;
 
 public:
 	const wstring& GetName() { return m_strName; }
+	bool IsFinish() { return m_bFinish; }
+	void SetFrame(int _iFrameIdx)
+	{
+		m_bFinish = false;
+		m_iCurFrm = _iFrameIdx;
+		m_fAccTime = 0.f;
+	}
 
 private:
 	void SetName(const wstring& _strName) { m_strName = _strName; }
