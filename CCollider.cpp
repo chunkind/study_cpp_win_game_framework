@@ -30,6 +30,8 @@ void CCollider::finalupdate()
 {
 	Vec2 vObjectPos = m_pOwner->GetPos();
 	m_vFinalPos = vObjectPos + m_vOffsetPos;
+
+	assert(0 <= m_iCol);
 }
 
 void CCollider::render(HDC _dc)
@@ -56,10 +58,10 @@ void CCollider::OnCollision(CCollider* _pOther)
 
 void CCollider::OnCollisionEnter(CCollider* _pOther)
 {
-	m_iCol = true;
+	++m_iCol;
 }
 
 void CCollider::OnCollisionExit(CCollider* _pOther)
 {
-	m_iCol = false;
+	--m_iCol;
 }

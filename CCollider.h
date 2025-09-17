@@ -14,7 +14,7 @@ private:
 	Vec2 m_vScale;
 
 	UINT m_iID;
-	UINT m_iCol;
+	int m_iCol;
 
 public:
 	void SetOffsetPos(Vec2 _vPos) { m_vOffsetPos = _vPos; }

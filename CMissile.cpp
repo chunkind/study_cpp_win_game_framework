@@ -4,6 +4,7 @@
 #include "CTimeMgr.h"
 #include "CResMgr.h"
 #include "CTexture.h"
+#include "CCollider.h"
 
 CMissile::CMissile()
 	: m_fTheta(PI / 2.f)
@@ -14,6 +15,7 @@ CMissile::CMissile()
 	m_pTex = CResMgr::GetInst()->LoadTexture(L"shot", L"texture\\shot.bmp");
 
 	CreateCollider();
+	GetCollider()->SetScale(Vec2(15.f, 15.f));
 }
 
 CMissile::~CMissile()
@@ -54,4 +56,6 @@ void CMissile::render(HDC _dc)
 		, iWidth, iHeight
 		, RGB(255, 0, 255)
 	);
+
+	component_render(_dc);
 }
