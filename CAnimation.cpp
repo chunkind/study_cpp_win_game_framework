@@ -1,12 +1,15 @@
 #include "pch.h"
 #include "CAnimation.h"
+#include "CTimeMgr.h"
 #include "CAnimator.h"
 #include "CTexture.h"
 #include "CObject.h"
 
 CAnimation::CAnimation()
 	: m_pAnimator(nullptr)
+	, m_pTex(nullptr)
 	, m_iCurFrm(0)
+	, m_fAccTime(0.f)
 {
 }
 
@@ -16,7 +19,19 @@ CAnimation::~CAnimation()
 
 void CAnimation::update()
 {
+	m_fAccTime += fDT;
 
+	if (m_vecFrm[m_iCurFrm].fDuration < m_fAccTime)
+	{
+		++m_iCurFrm;
+
+		if (m_vecFrm.size() <= m_iCurFrm)
+		{
+			m_iCurFrm = 0;
+		}
+
+		m_fAccTime = 0.f;
+	}
 }
 
 void CAnimation::render(HDC _dc)

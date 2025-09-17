@@ -18,6 +18,7 @@ private:
 	CTexture* m_pTex;
 	vector<tAnimFrm> m_vecFrm;
 	int m_iCurFrm;
+	float m_fAccTime;
 
 public:
 	const wstring& GetName() { return m_strName; }

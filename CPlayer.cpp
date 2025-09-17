@@ -20,7 +20,7 @@ CPlayer::CPlayer()
 	CTexture* pTex = CResMgr::GetInst()->LoadTexture(L"PlayerTex", L"texture\\link_0.bmp");
 
 	CreateAnimator();
-	GetAnimator()->CreateAnimation(L"WALK_DOWN", pTex, Vec2(0.f, 260.f), Vec2(60.f, 65.f), Vec2(60.f, 0.f), 1.f, 10);
+	GetAnimator()->CreateAnimation(L"WALK_DOWN", pTex, Vec2(0.f, 260.f), Vec2(60.f, 65.f), Vec2(60.f, 0.f), 0.1f, 10);
 	GetAnimator()->Play(L"WALK_DOWN");
 }
 
@@ -55,6 +55,7 @@ void CPlayer::update()
 	}
 
 	SetPos(vPos);
+	GetAnimator()->update();
 }
 
 void CPlayer::render(HDC _dc)
