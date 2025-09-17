@@ -27,6 +27,7 @@ public:
 	const wstring& GetName() { return m_strName; }
 
 	CCollider* GetCollider() { return m_pCollider; }
+	CAnimator* GetAnimator() { return m_pAnimator; }
 
 	bool IsDead() { return !m_bAlive; }
 
