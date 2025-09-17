@@ -4,8 +4,11 @@
 #include "CObject.h"
 #include "SelectGDI.h"
 
+UINT CCollider::g_iNextID = 0;
+
 CCollider::CCollider()
 	: m_pOwner(nullptr)
+	, m_iID(g_iNextID++)
 {
 }
 
