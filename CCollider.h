@@ -26,6 +26,8 @@ public:
 	void finalupdate();
 	void render(HDC _dc);
 
+	CCollider& operator = (CCollider& _origin) = delete;
+
 public:
 	CCollider();
 	CCollider(const CCollider& _origin);
