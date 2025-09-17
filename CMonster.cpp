@@ -77,8 +77,8 @@ void CMonster::OnCollisionEnter(CCollider* _pOther)
 {
 	CObject* pOtherObj = _pOther->GetObj();
 
-	if (pOtherObj->GetName() == L"player")
+	if (pOtherObj->GetName() == L"Missile_Player")
 	{
-		// 죽으면 삭제하는 코드...
+		DeleteObject(this);
 	}
 }
