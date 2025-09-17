@@ -2,7 +2,8 @@
 
 class CTimeMgr
 {
-	SINGLE(CTimeMgr);
+	SINGLE(CTimeMgr)
+
 private:
 	LARGE_INTEGER	m_llCurCount;
 	LARGE_INTEGER	m_llPrevCount;

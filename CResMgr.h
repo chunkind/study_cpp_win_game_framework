@@ -5,7 +5,8 @@ class CTexture;
 
 class CResMgr
 {
-	SINGLE(CResMgr);
+	SINGLE(CResMgr)
+
 private:
 	map<wstring, CRes*> m_mapTex;
 
