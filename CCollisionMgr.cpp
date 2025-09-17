@@ -36,7 +36,6 @@ void CCollisionMgr::CollisionGroupUpdate(GROUP_TYPE _eLeft, GROUP_TYPE _eRight)
 
 	const vector<CObject*>& vecLeft = pCurScene->GetGroupObject(_eLeft);
 	const vector<CObject*>& vecRight = pCurScene->GetGroupObject(_eRight);
-
 	map<ULONGLONG, bool>::iterator iter;
 
 	for (size_t i = 0; i < vecLeft.size(); ++i)
@@ -72,14 +71,26 @@ void CCollisionMgr::CollisionGroupUpdate(GROUP_TYPE _eLeft, GROUP_TYPE _eRight)
 			{
 				if (iter->second)
 				{
-					pLeftCol->OnCollision(pRightCol);
-					pRightCol->OnCollision(pLeftCol);
+					if (vecLeft[i]->IsDead() || vecRight[j]->IsDead())
+					{
+						pLeftCol->OnCollisionExit(pRightCol);
+						pRightCol->OnCollisionExit(pLeftCol);
+						iter->second = false;
+					}
+					else
+					{
+						pLeftCol->OnCollision(pRightCol);
+						pRightCol->OnCollision(pLeftCol);
+					}
 				}
 				else
 				{
-					pLeftCol->OnCollisionEnter(pRightCol);
-					pRightCol->OnCollisionEnter(pLeftCol);
-					iter->second = true;
+					if (!vecLeft[i]->IsDead() && !vecRight[j]->IsDead())
+					{
+						pLeftCol->OnCollisionEnter(pRightCol);
+						pRightCol->OnCollisionEnter(pLeftCol);
+						iter->second = true;
+					}
 				}
 			}
 			else
