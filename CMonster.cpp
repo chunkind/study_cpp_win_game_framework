@@ -3,7 +3,7 @@
 #include "CTimeMgr.h"
 #include "CResMgr.h"
 #include "CTexture.h"
-#include "CCollider.h";
+#include "CCollider.h"
 
 CMonster::CMonster()
 	: m_vCenterPos(Vec2(0.f, 0.f))
