@@ -56,6 +56,11 @@ public:
 		assert(!(0.f == _vOther.x || 0.f == _vOther.y));
 		return Vec2(x / _vOther.x, y / _vOther.y);
 	}
+	Vec2 operator / (float _f)
+	{
+		assert(!(0.f == _f));
+		return Vec2(x / _f, y / _f);
+	}
 
 public:
 	Vec2()

@@ -48,8 +48,9 @@ void CAnimation::render(HDC _dc)
 
 	CObject* pObj = m_pAnimator->GetObj();
 	Vec2 vPos = pObj->GetPos();
-
 	vPos += m_vecFrm[m_iCurFrm].vOffset;
+
+	vPos = CCamera::GetInst()->GetRenderPos(vPos);
 
 	TransparentBlt(_dc
 		, (int)(vPos.x - m_vecFrm[m_iCurFrm].vSlice.x / 2.f)

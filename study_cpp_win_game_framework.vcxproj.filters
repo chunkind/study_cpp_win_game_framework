@@ -83,6 +83,9 @@
     <Filter Include="Engine\07. Component\Animator\Animation">
       <UniqueIdentifier>{01461788-36d2-48ef-a762-baaeb75b5169}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\03. Manager\Camera">
+      <UniqueIdentifier>{ee57fbef-7ced-4926-a7cb-2bcb417194cb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -170,6 +173,9 @@
     <ClInclude Include="CAnimation.h">
       <Filter>Engine\07. Component\Animator\Animation</Filter>
     </ClInclude>
+    <ClInclude Include="CCamera.h">
+      <Filter>Engine\03. Manager\Camera</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="study_cpp_win_game_framework.rc">
@@ -254,6 +260,9 @@
     </ClCompile>
     <ClCompile Include="CAnimation.cpp">
       <Filter>Engine\07. Component\Animator\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="CCamera.cpp">
+      <Filter>Engine\03. Manager\Camera</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
