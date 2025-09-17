@@ -72,3 +72,8 @@ void CMonster::render(HDC _dc)
 
 	component_render(_dc);
 }
+
+void CMonster::OnCollisionEnter(CCollider* _pOther)
+{
+
+}
