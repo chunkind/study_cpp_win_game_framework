@@ -17,6 +17,7 @@ private:
 	CAnimator* m_pAnimator;
 	CTexture* m_pTex;
 	vector<tAnimFrm> m_vecFrm;
+	int m_iCurFrm;
 
 public:
 	const wstring& GetName() { return m_strName; }

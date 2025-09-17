@@ -38,8 +38,9 @@ CAnimation* CAnimator::FindAnimation(const wstring& _strName)
 	return iter->second;
 }
 
-void CAnimator::Play()
+void CAnimator::Play(const wstring& _strName)
 {
+	m_pCurAnim = FindAnimation(_strName);
 }
 
 void CAnimator::update()
