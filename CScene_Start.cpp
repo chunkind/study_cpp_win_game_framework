@@ -23,7 +23,7 @@ void CScene_Start::Enter()
 	pObj->SetScale(Vec2(100.f, 100.f));
 	AddObject(pObj, GROUP_TYPE::PLAYER);
 
-	int iMonCount = 16;
+	int iMonCount = 2;
 	float fMoveDist = 25.f;
 	float fObjScale = 50.f;
 
