@@ -34,10 +34,8 @@ void CScene_Start::Enter()
 	pObj->SetScale(Vec2(100.f, 100.f));
 	AddObject(pObj, GROUP_TYPE::PLAYER);
 
-	CObject* pOtherPlayer = pObj->Clone();
-	pOtherPlayer->SetPos(Vec2(740.f, 384.f));
-
 	int iMonCount = 2;
+
 	float fMoveDist = 25.f;
 	float fObjScale = 50.f;
 
