@@ -7,6 +7,9 @@
 
 CCamera::CCamera()
 	: m_pTargetObj(nullptr)
+	, m_fTime(0.5f)
+	, m_fSpeed(0.f)
+	, m_fAccTime(0.5f)
 {
 
 }
@@ -44,8 +47,20 @@ void CCamera::update()
 
 void CCamera::CalDiff()
 {
+	m_fAccTime += fDT;
+	if (m_fTime <= m_fAccTime)
+	{
+		m_vCurLookAt = m_vLookAt;
+	}
+	else
+	{
+		Vec2 vLookDir = m_vLookAt - m_vPrevLookAt;
+		m_vCurLookAt = m_vPrevLookAt + vLookDir.Normalize() * m_fSpeed * fDT;
+	}
+
 	Vec2 vResolution = CCore::GetInst()->GetResolution();
 	Vec2 vCenter = vResolution / 2;
 
-	m_vDiff = m_vLookAt - vCenter;
+	m_vDiff = m_vCurLookAt - vCenter;
+	m_vPrevLookAt = m_vCurLookAt;
 }
