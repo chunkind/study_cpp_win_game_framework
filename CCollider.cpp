@@ -2,6 +2,7 @@
 #include "CCollider.h"
 #include "CCore.h"
 #include "CObject.h"
+#include "SelectGDI.h"
 
 CCollider::CCollider()
 	: m_pOwner(nullptr)
@@ -20,11 +21,8 @@ void CCollider::finalupdate()
 
 void CCollider::render(HDC _dc)
 {
-	HPEN hGreenPen = CCore::GetInst()->GetPen(PEN_TYPE::GREEN);
-	HPEN hDefaultPen = (HPEN)::SelectObject(_dc, hGreenPen);
-
-	HBRUSH hHolowBrush = CCore::GetInst()->GetBrush(BRUSH_TYPE::HOLLOW);
-	HBRUSH hDefaultBrush = (HBRUSH)::SelectObject(_dc, hHolowBrush);
+	SelectGDI p(_dc, PEN_TYPE::GREEN);
+	SelectGDI b(_dc, BRUSH_TYPE::HOLLOW);
 
 	::Rectangle(_dc
 		, (int)(m_vFinalPos.x - m_vScale.x / 2.f)
@@ -32,7 +30,4 @@ void CCollider::render(HDC _dc)
 		, (int)(m_vFinalPos.x + m_vScale.x / 2.f)
 		, (int)(m_vFinalPos.y + m_vScale.y / 2.f)
 	);
-
-	::SelectObject(_dc, hDefaultPen);
-	::SelectObject(_dc, hDefaultBrush);
 }
