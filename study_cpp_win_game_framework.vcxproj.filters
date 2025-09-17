@@ -149,6 +149,9 @@
     <ClInclude Include="CEventMgr.h">
       <Filter>Engine\03. Manager\EventMgr</Filter>
     </ClInclude>
+    <ClInclude Include="func.h">
+      <Filter>Engine\01. Header</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="study_cpp_win_game_framework.rc">
@@ -221,6 +224,9 @@
     </ClCompile>
     <ClCompile Include="CEventMgr.cpp">
       <Filter>Engine\03. Manager\EventMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="func.cpp">
+      <Filter>Engine\01. Header</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -43,7 +43,7 @@ void CScene_Start::Enter()
 	}
 
 	CCollisionMgr::GetInst()->CheckGroup(GROUP_TYPE::PLAYER, GROUP_TYPE::MONSTER);
-	CCollisionMgr::GetInst()->CheckGroup(GROUP_TYPE::MISSILE, GROUP_TYPE::MONSTER);
+	CCollisionMgr::GetInst()->CheckGroup(GROUP_TYPE::PROJ_PLAYER, GROUP_TYPE::MONSTER);
 }
 
 void CScene_Start::Exit()
