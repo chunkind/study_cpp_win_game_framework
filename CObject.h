@@ -21,6 +21,7 @@ public:
 
 public:
 	virtual void update() = 0;
+	virtual void finalupdate() final;
 	virtual void render(HDC _dc);
 
 public:
