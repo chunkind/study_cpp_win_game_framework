@@ -16,6 +16,8 @@ public:
 private:
     void CreateMissile();
 
+    CPlayer* Clone() { return new CPlayer(*this); }
+
 public:
     CPlayer();
     CPlayer(const CPlayer& _origin)
