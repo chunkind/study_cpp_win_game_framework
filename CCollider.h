@@ -28,6 +28,7 @@ public:
 
 public:
 	CCollider();
+	CCollider(const CCollider& _origin);
 	~CCollider();
 
 	friend class CObject;

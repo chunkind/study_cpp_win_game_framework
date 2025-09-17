@@ -12,6 +12,15 @@ CCollider::CCollider()
 {
 }
 
+CCollider::CCollider(const CCollider& _origin)
+	: m_pOwner(nullptr)
+	, m_vOffsetPos(_origin.m_vOffsetPos)
+	, m_vScale(_origin.m_vScale)
+	, m_iID(g_iNextID++)
+{
+
+}
+
 CCollider::~CCollider()
 {
 }
