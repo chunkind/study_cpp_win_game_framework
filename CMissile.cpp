@@ -58,3 +58,13 @@ void CMissile::render(HDC _dc)
 
 	component_render(_dc);
 }
+
+void CMissile::OnCollisionEnter(CCollider* _pOther)
+{
+	CObject* pOtherObj = _pOther->GetObj();
+
+	if (pOtherObj->GetName() == L"Monster")
+	{
+		DeleteObject(this);
+	}
+}

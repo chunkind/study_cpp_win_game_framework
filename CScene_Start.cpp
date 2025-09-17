@@ -35,6 +35,7 @@ void CScene_Start::Enter()
 	for (int i = 0; i < iMonCount; ++i)
 	{
 		pMonsterObj = new CMonster;
+		pMonsterObj->SetName(L"Monster");
 		pMonsterObj->SetPos(Vec2((fMoveDist + fObjScale / 2.f) + (float)i * fTerm, 50.f));
 		pMonsterObj->SetCenterPos(pMonsterObj->GetPos());
 		pMonsterObj->SetMoveDistance(fMoveDist);
