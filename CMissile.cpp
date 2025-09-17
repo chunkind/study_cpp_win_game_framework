@@ -2,12 +2,18 @@
 #include "CMissile.h"
 
 #include "CTimeMgr.h"
+#include "CResMgr.h"
+#include "CTexture.h"
 
 CMissile::CMissile()
 	: m_fTheta(PI / 2.f)
 	, m_vDir(Vec2(1.f, -1.f))
 {
 	m_vDir.Normalize();
+
+	m_pTex = CResMgr::GetInst()->LoadTexture(L"shot", L"texture\\shot.bmp");
+
+	CreateCollider();
 }
 
 CMissile::~CMissile()
@@ -26,9 +32,26 @@ void CMissile::update()
 
 void CMissile::render(HDC _dc)
 {
+	int iWidth = (int)m_pTex->Width();
+	int iHeight = (int)m_pTex->Height();
+
+	int missileScale = 2;
+
 	Vec2 vPos = GetPos();
 	Vec2 vScale = GetScale();
 
-	Ellipse(_dc, (int)(vPos.x - vScale.x / 2.f), (int)(vPos.y - vScale.y / 2.f)
-		, (int)(vPos.x + vScale.x / 2.f), (int)(vPos.y + vScale.y / 2.f));
+	/*Ellipse(_dc
+		, (int)(vPos.x - vScale.x / 2.f)
+		, (int)(vPos.y - vScale.y / 2.f)
+		, (int)(vPos.x + vScale.x / 2.f)
+		, (int)(vPos.y + vScale.y / 2.f));*/
+	TransparentBlt(_dc
+		, int(vPos.x - (float)(iWidth * missileScale / 2))
+		, int(vPos.y - (float)(iHeight * missileScale / 2))
+		, iWidth * missileScale, iHeight * missileScale
+		, m_pTex->GetDC()
+		, 0, 0
+		, iWidth, iHeight
+		, RGB(255, 0, 255)
+	);
 }

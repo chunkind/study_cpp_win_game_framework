@@ -2,6 +2,8 @@
 
 #include "CObject.h"
 
+class CTexture;
+
 class CMonster : public CObject
 {
 private:
@@ -9,6 +11,7 @@ private:
     float   m_fSpeed;
     float   m_fMaxDistance;
     int     m_iDir;
+    CTexture* m_pTex;
 
 public:
     float   GetSpeed() { return m_fSpeed; }
@@ -18,6 +21,7 @@ public:
 
 public:
     virtual void update();
+    virtual void render(HDC _dc);
 
 public:
     CMonster();

@@ -1,10 +1,14 @@
 #pragma once
 
+class CCollider;
+
 class CObject
 {
 private:
 	Vec2 m_vPos;
 	Vec2 m_vScale;
+
+	CCollider* m_pCollider;
 
 public:
 	void SetPos(Vec2 _vPos) { m_vPos = _vPos; }
@@ -12,6 +16,8 @@ public:
 
 	Vec2 GetPos() { return m_vPos; }
 	Vec2 GetScale() { return m_vScale; }
+
+	void CreateCollider();
 
 public:
 	virtual void update() = 0;

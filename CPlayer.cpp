@@ -13,6 +13,7 @@ CPlayer::CPlayer()
 	:m_pTex(nullptr)
 {
 	m_pTex = CResMgr::GetInst()->LoadTexture(L"PlayerTex", L"texture\\Player.bmp");
+	CreateCollider();
 }
 
 CPlayer::~CPlayer()

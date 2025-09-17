@@ -2,6 +2,8 @@
 #include "CMonster.h"
 
 #include "CTimeMgr.h"
+#include "CResMgr.h"
+#include "CTexture.h"
 
 CMonster::CMonster()
 	: m_vCenterPos(Vec2(0.f, 0.f))
@@ -9,6 +11,9 @@ CMonster::CMonster()
 	, m_fMaxDistance(50.f)
 	, m_iDir(1)
 {
+	m_pTex = CResMgr::GetInst()->LoadTexture(L"EnemyTex", L"texture\\Enemy.bmp");
+
+	CreateCollider();
 }
 
 CMonster::~CMonster()
@@ -30,4 +35,38 @@ void CMonster::update()
 	}
 
 	SetPos(vCurPos);
+}
+
+void CMonster::render(HDC _dc)
+{
+	int iWidth = (int)m_pTex->Width();
+	int iHeight = (int)m_pTex->Height();
+
+	HDC hdcTmp = CreateCompatibleDC(_dc);
+	HBITMAP hbmTmp = CreateCompatibleBitmap(_dc, iWidth, iHeight);
+	HBITMAP hbmOld = (HBITMAP)SelectObject(hdcTmp, hbmTmp);
+
+	Vec2 vPos = GetPos();
+
+	StretchBlt(hdcTmp
+		, 0, 0
+		, iWidth, iHeight
+		, m_pTex->GetDC()
+		, iWidth - 1, iHeight - 1
+		, -iWidth, -iHeight
+		, SRCCOPY);
+
+	TransparentBlt(_dc
+		, int(vPos.x - (float)(iWidth / 2))
+		, int(vPos.y - (float)(iHeight / 2))
+		, iWidth, iHeight
+		, hdcTmp
+		, 0, 0
+		, iWidth, iHeight
+		, RGB(255, 0, 255)
+	);
+
+	SelectObject(hdcTmp, hbmOld);
+	DeleteObject(hbmTmp);
+	DeleteDC(hdcTmp);
 }
