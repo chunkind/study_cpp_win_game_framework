@@ -52,21 +52,22 @@ void CAnimation::render(HDC _dc)
 
 	vPos = CCamera::GetInst()->GetRenderPos(vPos);
 
-	TransparentBlt(_dc
-		, (int)(vPos.x - m_vecFrm[m_iCurFrm].vSlice.x / 2.f)
-		, (int)(vPos.y - m_vecFrm[m_iCurFrm].vSlice.y / 2.f)
-		, (int)(m_vecFrm[m_iCurFrm].vSlice.x)
-		, (int)(m_vecFrm[m_iCurFrm].vSlice.y)
-		, m_pTex->GetDC()
-		, (int)(m_vecFrm[m_iCurFrm].vLT.x)
-		, (int)(m_vecFrm[m_iCurFrm].vLT.y)
-		, (int)(m_vecFrm[m_iCurFrm].vSlice.x)
-		, (int)(m_vecFrm[m_iCurFrm].vSlice.y)
-		, RGB(255, 0, 255)
+	TransparentBlt(_dc // 출력할 DC
+		, (int)(vPos.x - m_vecFrm[m_iCurFrm].vSlice.x / 2.f) // 출력할쪽의 좌상단 x 위치
+		, (int)(vPos.y - m_vecFrm[m_iCurFrm].vSlice.y / 2.f) // 출력할쪽의 좌상단 y 위치
+		, (int)(m_vecFrm[m_iCurFrm].vSlice.x) // 가로 길이
+		, (int)(m_vecFrm[m_iCurFrm].vSlice.y) // 세로 길이
+		, m_pTex->GetDC() // 붙여넣을 원본 DC
+		, (int)(m_vecFrm[m_iCurFrm].vLT.x) // 붙여넣을 원본 DC의 좌상단 x 위치
+		, (int)(m_vecFrm[m_iCurFrm].vLT.y) // 붙여넣을 원본 DC의 좌상단 y 위치
+		, (int)(m_vecFrm[m_iCurFrm].vSlice.x) // 가로 길이
+		, (int)(m_vecFrm[m_iCurFrm].vSlice.y) // 세로 길이
+		, RGB(255, 0, 255) // 무시할 색상 :: 마젠타
 	);
 }
 
-void CAnimation::Create(CTexture* _pTex, Vec2 _vLT, Vec2 _vSliceSize, Vec2 _vStep, float _fDuration, UINT _iFrameCount)
+void CAnimation::Create(CTexture* _pTex, Vec2 _vLT, Vec2 _vSliceSize
+	, Vec2 _vStep, float _fDuration, UINT _iFrameCount)
 {
 	m_pTex = _pTex;
 

@@ -7,10 +7,10 @@ class CTexture;
 class CAnimator
 {
 private:
-	map<wstring, CAnimation*> m_mapAnim;
-	CAnimation* m_pCurAnim;
-	CObject* m_pOwner;
-	bool m_bRepeat;
+	map<wstring, CAnimation*>	m_mapAnim; // 모든 Animation
+	CAnimation*					m_pCurAnim; // 현재 재생중인 Animation
+	CObject*					m_pOwner; // Animator를 소유한 오브젝트
+	bool						m_bRepeat; // 반복 재생 여부
 
 public:
 	CObject* GetObj() { return m_pOwner; }

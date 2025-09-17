@@ -14,13 +14,13 @@ struct tAnimFrm
 class CAnimation
 {
 private:
-	wstring m_strName;
-	CAnimator* m_pAnimator;
-	CTexture* m_pTex;
-	vector<tAnimFrm> m_vecFrm;
-	int m_iCurFrm;
-	float m_fAccTime;
-	bool m_bFinish;
+	wstring				m_strName; // Animation 이름
+	CAnimator*			m_pAnimator; // Animation을 소유한 Animator
+	CTexture*			m_pTex; // Animation이 사용할 텍스쳐
+	vector<tAnimFrm>	m_vecFrm; // 모든 프레임 정보
+	int					m_iCurFrm; // 현재 프레임 인덱스
+	float				m_fAccTime; // 누적 시간
+	bool				m_bFinish; // 애니메이션 종료 여부
 
 public:
 	const wstring& GetName() { return m_strName; }
