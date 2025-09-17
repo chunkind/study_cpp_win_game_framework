@@ -237,3 +237,4 @@ __pycache__/
 # JetBrains Rider
 .idea/
 *.sln.iml
+/Output/bin_debug/study_cpp_win_game_framework.exe
