@@ -26,6 +26,12 @@ void CScene_Start::update()
 	{
 		ChangeScene(SCENE_TYPE::TOOL);
 	}
+
+	if (KEY_TAP(KEY::LBTN))
+	{
+		Vec2 vLookAt = CCamera::GetInst()->GetRealPos(MOUSE_POS);
+		CCamera::GetInst()->SetLookAt(vLookAt);
+	}
 }
 
 void CScene_Start::Enter()
@@ -35,7 +41,8 @@ void CScene_Start::Enter()
 	pObj->SetScale(Vec2(100.f, 100.f));
 	AddObject(pObj, GROUP_TYPE::PLAYER);
 
-	CCamera::GetInst()->SetTarget(pObj);
+	// 카메라 클릭, 키보드 이동 테스트로 잠시 주석
+	//CCamera::GetInst()->SetTarget(pObj);
 
 	int iMonCount = 2;
 
