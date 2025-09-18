@@ -43,11 +43,17 @@ void CScene_Tool::SetTileIdx()
         Vec2 vMousePos = MOUSE_POS;
         vMousePos = CCamera::GetInst()->GetRealPos(vMousePos);
 
-        UINT iTileX = GetTileX();
-        UINT iTileY = GetTileY();
+        int iTileX = (int)GetTileX();
+        int iTileY = (int)GetTileY();
 
-        UINT iCol = (UINT)vMousePos.x / TILE_SIZE;
-        UINT iRow = (UINT)vMousePos.y / TILE_SIZE;
+        int iCol = (int)vMousePos.x / TILE_SIZE;
+        int iRow = (int)vMousePos.y / TILE_SIZE;
+
+        if (vMousePos.x < 0 || iTileX <= iCol
+            || vMousePos.y < 0.f || iTileY <= iRow)
+        {
+            return;
+        }
 
         UINT iIdx = iRow * iTileX + iCol;
 
