@@ -13,6 +13,9 @@ public:
 	virtual void Exit();
 
 public:
+	void SetTileIdx();
+
+public:
 	CScene_Tool();
 	~CScene_Tool();
 };

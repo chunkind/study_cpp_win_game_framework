@@ -5,6 +5,8 @@
 #include "CResMgr.h"
 
 CScene::CScene()
+	: m_iTileX(0)
+	, m_iTileY(0)
 {
 }
 
@@ -80,6 +82,9 @@ void CScene::DeleteAll()
 
 void CScene::CreateTile(UINT _iXCount, UINT _iYCount)
 {
+	m_iTileX = _iXCount;
+	m_iTileY = _iYCount;
+
 	CTexture* pTileTex = CResMgr::GetInst()->LoadTexture(L"Tile", L"texture\\tile\\TILE.bmp");
 
 	for (int i = 0; i < _iXCount; ++i)

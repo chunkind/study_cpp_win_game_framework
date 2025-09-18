@@ -32,6 +32,28 @@ void CScene_Tool::Exit()
 void CScene_Tool::update()
 {
 	CScene::update();
+
+    SetTileIdx();
+}
+
+void CScene_Tool::SetTileIdx()
+{
+    if (KEY_TAP(KEY::LBTN))
+    {
+        Vec2 vMousePos = MOUSE_POS;
+        vMousePos = CCamera::GetInst()->GetRealPos(vMousePos);
+
+        UINT iTileX = GetTileX();
+        UINT iTileY = GetTileY();
+
+        UINT iCol = (UINT)vMousePos.x / TILE_SIZE;
+        UINT iRow = (UINT)vMousePos.y / TILE_SIZE;
+
+        UINT iIdx = iRow * iTileX + iCol;
+
+        const vector<CObject*>& vecTile = GetGroupObject(GROUP_TYPE::TILE);
+        ((CTile*)vecTile[iIdx])->AddImgIdx();
+    }
 }
 
 // ======================

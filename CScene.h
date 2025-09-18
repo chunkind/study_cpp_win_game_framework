@@ -8,9 +8,15 @@ protected:
 	vector<CObject*> m_arrObj[(UINT)GROUP_TYPE::END];
 	wstring			 m_strName;
 
+	UINT m_iTileX; // 타일 가로 개수
+	UINT m_iTileY; // 타일 세로 개수
+
 public:
 	void SetName(const wstring& _strName) { m_strName = _strName; }
 	const wstring& GetName() { return m_strName; }
+
+	UINT GetTileX() { return m_iTileX; }
+	UINT GetTileY() { return m_iTileY; }
 
 	virtual void update();
 	virtual void finalupdate();
