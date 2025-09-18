@@ -28,7 +28,7 @@ public:
     virtual void update();
     virtual void render(HDC _dc);
 
-    CLONE(CMonster);
+    CLONE(CMonster)
 
 public:
     CMonster();
