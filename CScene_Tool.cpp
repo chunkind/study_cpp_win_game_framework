@@ -3,6 +3,7 @@
 #include "CKeyMgr.h"
 #include "CTile.h"
 #include "CCore.h"
+#include "CResMgr.h"
 
 CScene_Tool::CScene_Tool()
 {
@@ -14,6 +15,8 @@ CScene_Tool::~CScene_Tool()
 
 void CScene_Tool::Enter()
 {
+	CTexture* pTileTex = CResMgr::GetInst()->LoadTexture(L"Tile", L"texture\\tile\\TILE.bmp");
+
 	for (int i = 0; i < 5; ++i)
 	{
 		for (int j = 0; j < 5; ++j)
