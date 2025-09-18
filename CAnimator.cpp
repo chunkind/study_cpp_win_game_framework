@@ -41,6 +41,11 @@ CAnimation* CAnimator::FindAnimation(const wstring& _strName)
 
 void CAnimator::update()
 {
+	
+}
+
+void CAnimator::finalupdate()
+{
 	if (nullptr != m_pCurAnim)
 	{
 		m_pCurAnim->update();
