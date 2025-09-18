@@ -4,7 +4,7 @@
 
 CTile::CTile()
 	: m_pTileTex(nullptr)
-	, m_iIdx(3)
+	, m_iImgIdx(0)
 {
 	SetScale(Vec2(TILE_SIZE, TILE_SIZE));
 }
@@ -28,8 +28,8 @@ void CTile::render(HDC _dc)
 	UINT iMaxCol = iWidth / TILE_SIZE;
 	UINT iMaxRow = iHeight / TILE_SIZE;
 
-	UINT iCurRow = (UINT)m_iIdx / iMaxCol;
-	UINT iCurCol = (UINT)m_iIdx % iMaxCol;
+	UINT iCurRow = (UINT)m_iImgIdx / iMaxCol;
+	UINT iCurCol = (UINT)m_iImgIdx % iMaxCol;
 
 	if (iMaxRow <= iCurRow)
 		assert(nullptr);
