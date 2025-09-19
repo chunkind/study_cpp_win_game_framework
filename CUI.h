@@ -1,6 +1,7 @@
 #pragma once
 
 #include "CObject.h"
+#include "SelectGDI.h"
 
 class CUI : public CObject
 {
@@ -23,6 +24,7 @@ public:
 		m_vecChildUI.push_back(_pUI); 
 		_pUI->m_pParentUI = this;
 	}
+	const vector<CUI*>& GetChildUI() { return m_vecChildUI; }
 
 public:
 	virtual void update();

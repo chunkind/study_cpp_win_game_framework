@@ -50,11 +50,26 @@ void CUI::render(HDC _dc)
 		vPos = CCamera::GetInst()->GetRenderPos(vPos);
 	}
 
-	Rectangle(_dc
-		, (int)(vPos.x)
-		, (int)(vPos.y)
-		, (int)(vPos.x + vScale.x)
-		, (int)(vPos.y + vScale.y));
+	if (m_bLbtnDown)
+	{
+		SelectGDI select(_dc, PEN_TYPE::GREEN);
+
+		Rectangle(_dc
+			, (int)(vPos.x)
+			, (int)(vPos.y)
+			, (int)(vPos.x + vScale.x)
+			, (int)(vPos.y + vScale.y)
+		);
+	}
+	else
+	{
+		Rectangle(_dc
+			, (int)(vPos.x)
+			, (int)(vPos.y)
+			, (int)(vPos.x + vScale.x)
+			, (int)(vPos.y + vScale.y)
+		);
+	}
 
 	render_child(_dc);
 }
