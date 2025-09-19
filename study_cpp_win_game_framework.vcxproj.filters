@@ -86,6 +86,18 @@
     <Filter Include="Engine\03. Manager\Camera">
       <UniqueIdentifier>{ee57fbef-7ced-4926-a7cb-2bcb417194cb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\04. Object\UI">
+      <UniqueIdentifier>{30808214-885c-4f0a-986f-e9eaa2958fe9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\04. Object\Tile">
+      <UniqueIdentifier>{0af95131-f4f8-4011-b742-93577c92d935}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\04. Object\UI\PaneUI">
+      <UniqueIdentifier>{80941b5e-b875-4ae2-843a-a50429d2ea9a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\03. Manager\UIMgr">
+      <UniqueIdentifier>{a58e3a90-4131-4610-83ec-eabd06c211ed}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -179,6 +191,18 @@
     <ClInclude Include="global.h">
       <Filter>Engine\01. Header</Filter>
     </ClInclude>
+    <ClInclude Include="CUI.h">
+      <Filter>Engine\04. Object\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="CTile.h">
+      <Filter>Engine\04. Object\Tile</Filter>
+    </ClInclude>
+    <ClInclude Include="CPanelUI.h">
+      <Filter>Engine\04. Object\UI\PaneUI</Filter>
+    </ClInclude>
+    <ClInclude Include="CUIMgr.h">
+      <Filter>Engine\03. Manager\UIMgr</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="study_cpp_win_game_framework.rc">
@@ -266,6 +290,18 @@
     </ClCompile>
     <ClCompile Include="CCamera.cpp">
       <Filter>Engine\03. Manager\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="CUI.cpp">
+      <Filter>Engine\04. Object\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="CTile.cpp">
+      <Filter>Engine\04. Object\Tile</Filter>
+    </ClCompile>
+    <ClCompile Include="CPanelUI.cpp">
+      <Filter>Engine\04. Object\UI\PaneUI</Filter>
+    </ClCompile>
+    <ClCompile Include="CUIMgr.cpp">
+      <Filter>Engine\03. Manager\UIMgr</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
