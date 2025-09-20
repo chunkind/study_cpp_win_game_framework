@@ -6,6 +6,7 @@
 #include "CKeyMgr.h"
 
 CUIMgr::CUIMgr()
+	: m_pFocusedUI(nullptr)
 {
 
 }
@@ -17,73 +18,81 @@ CUIMgr::~CUIMgr()
 
 void CUIMgr::update()
 {
+	// 1. FocusedUI 확인
+	m_pFocusedUI = GetFocusedUI();
+
+	if (!m_pFocusedUI)
+		return;
+
+	// 2. FocusedUI 내에서, 부모 UI 포함, 자식 UI 들 중 실제 타겟팅 된 UI 를 가져온다.
+	CUI* pTargetUI = GetTargetedUI(m_pFocusedUI);
+
+	bool bLbtnAway = KEY_AWAY(KEY::LBTN);
+	bool bLbtnTap = KEY_TAP(KEY::LBTN);
+
+	if (nullptr != pTargetUI)
+	{
+		pTargetUI->MouseOn();
+
+		if (bLbtnTap)
+		{
+			pTargetUI->MouseLbtnDown();
+			pTargetUI->m_bLbtnDown = true;
+		}
+		else if (bLbtnAway)
+		{
+			pTargetUI->MouseLbtnUp();
+
+			if (pTargetUI->m_bLbtnDown)
+			{
+				pTargetUI->MouseLbtnClicked();
+			}
+
+			pTargetUI->m_bLbtnDown = false;
+		}
+	}
+}
+
+CUI* CUIMgr::GetFocusedUI()
+{
 	CScene* pCurScene = CSceneMgr::GetInst()->GetCurScene();
-	const vector<CObject*>& vecUI = pCurScene->GetGroupObject(GROUP_TYPE::UI);
+	vector<CObject*>& vecUI = pCurScene->GetUIGroup();
 
 	bool bLbtnTap = KEY_TAP(KEY::LBTN);
-	bool bLbtnAway = KEY_AWAY(KEY::LBTN);
 
-	for (size_t i = 0; i < vecUI.size(); ++i)
+	// 기존 포커싱 UI를 받아두고 변경되었는지 확인 한다.
+	CUI* pFocusedUI = m_pFocusedUI;
+
+	if (!bLbtnTap)
 	{
-		CUI* pUI = (CUI*)vecUI[i];
-
-		// 부모 UI 포함, 자식 UI 들 중 실제 타겟팅 된 UI를 가져온다.
-		pUI = GetTargetedUI(pUI);
-
-		if (nullptr != pUI)
-		{
-			pUI->MouseOn();
-
-			if (bLbtnTap)
-			{
-				pUI->MouseLbtnDown();
-				pUI->m_bLbtnDown = true;
-			}
-			else if (bLbtnAway)
-			{
-				pUI->MouseLbtnUp();
-
-				if (pUI->m_bLbtnDown)
-				{
-					pUI->MouseLbtnClicked();
-				}
-
-				// 왼쪽버튼 떼면, 눌렸던 체크를 다시 해제한다.
-				pUI->m_bLbtnDown = false;
-			}
-		}
-
-		//if (pUI->IsMouseOn())
-		//{
-		//	pUI->MouseOn();
-
-		//	if (bLbtnTap)
-		//	{
-		//		pUI->MouseLbtnDown();
-		//		pUI->m_bLbtnDown = true;
-		//	}
-		//	else if (bLbtnAway)
-		//	{
-		//		pUI->MouseLbtnUp();
-
-		//		if (pUI->m_bLbtnDown)
-		//		{
-		//			pUI->MouseLbtnClicked();
-		//		}
-
-		//		// 왼쪽버튼 떼면, 눌렸던 체크를 다시 해제한다.
-		//		pUI->m_bLbtnDown = false;
-		//	}
-		//}
-		//else
-		//{
-		//	// 왼쪽 버튼 떼면, 눌렸던 체크를 다시 해제한다.
-		//	if (bLbtnAway)
-		//	{
-		//		pUI->m_bLbtnDown = false;
-		//	}
-		//}
+		return pFocusedUI;
 	}
+
+	// 왼쪽 버튼 TAP 이 발생했다는 전제
+	vector<CObject*>::iterator targetiter = vecUI.end();
+	vector<CObject*>::iterator iter = vecUI.begin();
+
+	for (; iter != vecUI.end(); ++iter)
+	{
+		if (((CUI*)*iter)->IsMouseOn())
+		{
+			targetiter = iter;
+		}
+	}
+
+	// 이번에 Focus 된 UI 가 없다.
+	if (vecUI.end() == targetiter)
+	{
+		return nullptr;
+	}
+
+	pFocusedUI = (CUI*)*targetiter;
+
+	// 백터 내에서 맨 뒤로 순번 교체
+	vecUI.erase(targetiter);
+	vecUI.push_back(pFocusedUI);
+
+	return pFocusedUI;
 }
 
 CUI* CUIMgr::GetTargetedUI(CUI* _pParentUI)
