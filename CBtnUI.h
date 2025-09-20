@@ -9,6 +9,8 @@ public:
 	virtual void MouseLbtnDown();
 	virtual void MouseLbtnUp();
 
+	CLONE(CBtnUI)
+
 public:
 	CBtnUI();
 	~CBtnUI();

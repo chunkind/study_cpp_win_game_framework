@@ -11,6 +11,20 @@ CUI::CUI(bool _bCamAff)
 	m_bCamAffected = _bCamAff;
 }
 
+// 복사생성자
+CUI::CUI(const CUI& _origin)
+	: CObject(_origin) // 이걸빼면 기본생성자가 호출된다.
+	, m_pParentUI(nullptr)
+	, m_bCamAffected(_origin.m_bCamAffected)
+	, m_bMouseOn(false)
+	, m_bLbtnDown(false)
+{
+	for (size_t i = 0; i < _origin.m_vecChildUI.size(); ++i)
+	{
+		AddChild(_origin.m_vecChildUI[i]->Clone());
+	}
+}
+
 CUI::~CUI()
 {
 	Safe_Delete_Vec(m_vecChildUI);

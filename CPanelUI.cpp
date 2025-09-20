@@ -12,6 +12,16 @@ CPanelUI::~CPanelUI()
 
 }
 
+void CPanelUI::update()
+{
+
+}
+
+void CPanelUI::render(HDC _dc)
+{
+	CUI::render(_dc);
+}
+
 void CPanelUI::MouseOn()
 {
 	if (IsLbtnDown())

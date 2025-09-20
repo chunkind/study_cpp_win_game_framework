@@ -24,19 +24,28 @@ void CScene_Tool::Enter()
 
 	Vec2 vResolution = CCore::GetInst()->GetResolution();
 
+    // 메인 UI
     CUI* pPanelUI = new CPanelUI;
     pPanelUI->SetName(L"ParentUI");
     pPanelUI->SetScale(Vec2(500.f, 300.f));
     pPanelUI->SetPos(Vec2(vResolution.x - pPanelUI->GetScale().x, 0.f));
 
+    // 자식 UI
     CUI* pBtnUI = new CBtnUI;
     pBtnUI->SetName(L"ChildUI");
     pBtnUI->SetScale(Vec2(100.f, 40.f));
     pBtnUI->SetPos(Vec2(0.f, 0.f));
-
     pPanelUI->AddChild(pBtnUI);
 
+    // UI 씬에 올리기
     AddObject(pPanelUI, GROUP_TYPE::UI);
+
+    // 복사 UI
+    CUI* pClonePanel = pPanelUI->Clone();
+    pClonePanel->SetPos(pClonePanel->GetPos() + Vec2(-300.f, 0.f));
+
+    // UI 씬에 올리기
+    AddObject(pClonePanel, GROUP_TYPE::UI);
 
 	CCamera::GetInst()->SetLookAt(vResolution / 2.f);
 }
