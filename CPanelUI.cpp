@@ -10,3 +10,15 @@ CPanelUI::~CPanelUI()
 {
 
 }
+
+void CPanelUI::MouseOn()
+{
+}
+
+void CPanelUI::MouseLbtnDown()
+{
+}
+
+void CPanelUI::MouseLbtnUp()
+{
+}

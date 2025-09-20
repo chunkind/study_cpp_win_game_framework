@@ -103,8 +103,7 @@ CUI* CUIMgr::GetTargetedUI(CUI* _pParentUI)
 
 	while (!queue.empty())
 	{
-		// 큐에서 먼저들어오면 데이터 하나 가져온다.
-		CUI* pUI = queue.front();
+		CUI* pUI = queue.front(); // 큐에서 먼저들어오면 데이터 하나 가져온다.
 		queue.pop_front(); // 가져왔으면 제거
 
 		// 큐에서 꺼내온 UI 가 targetUI 인지 확인

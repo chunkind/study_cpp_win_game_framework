@@ -6,13 +6,13 @@
 class CUI : public CObject
 {
 private:
-	vector<CUI*> m_vecChildUI;
-	CUI* m_pParentUI;
-	Vec2 m_vFinalPos;
+	vector<CUI*>	m_vecChildUI;
+	CUI*			m_pParentUI;
+	Vec2			m_vFinalPos;
 
-	bool m_bCamAffected; // UI 가 카메라에 영향을 받는 유무
-	bool m_bMouseOn; // UI 위에 마우스가 있는지
-	bool m_bLbtnDown; // UI 에 왼쪽버튼이 눌린적이 있는지
+	bool			m_bCamAffected; // UI 가 카메라에 영향을 받는 유무
+	bool			m_bMouseOn; // UI 위에 마우스가 있는지
+	bool			m_bLbtnDown; // UI 에 왼쪽버튼이 눌린적이 있는지
 
 public:
 	Vec2 GetFinalPos() { return m_vFinalPos; }

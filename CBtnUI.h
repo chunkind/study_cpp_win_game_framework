@@ -2,18 +2,14 @@
 
 #include "CUI.h"
 
-class CPanelUI : public CUI
+class CBtnUI : public CUI
 {
-private:
-
 public:
 	virtual void MouseOn();
 	virtual void MouseLbtnDown();
 	virtual void MouseLbtnUp();
 
 public:
-	CPanelUI();
-	~CPanelUI();
-
-
+	CBtnUI();
+	~CBtnUI();
 };

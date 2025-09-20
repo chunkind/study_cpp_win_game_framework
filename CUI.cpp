@@ -54,7 +54,7 @@ void CUI::render(HDC _dc)
 	{
 		SelectGDI select(_dc, PEN_TYPE::GREEN);
 
-		Rectangle(_dc
+		::Rectangle(_dc
 			, (int)(vPos.x)
 			, (int)(vPos.y)
 			, (int)(vPos.x + vScale.x)
@@ -63,7 +63,7 @@ void CUI::render(HDC _dc)
 	}
 	else
 	{
-		Rectangle(_dc
+		::Rectangle(_dc
 			, (int)(vPos.x)
 			, (int)(vPos.y)
 			, (int)(vPos.x + vScale.x)
