@@ -42,7 +42,7 @@ void CUI::finalupdate()
 
 void CUI::render(HDC _dc)
 {
-	Vec2 vPos = GetPos();
+	Vec2 vPos = GetFinalPos();
 	Vec2 vScale = GetScale();
 
 	if (m_bCamAffected)
