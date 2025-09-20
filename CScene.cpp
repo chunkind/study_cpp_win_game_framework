@@ -3,6 +3,7 @@
 #include "CObject.h"
 #include "CTile.h"
 #include "CResMgr.h"
+#include "CPathMgr.h"
 
 CScene::CScene()
 	: m_iTileX(0)
@@ -82,6 +83,8 @@ void CScene::DeleteAll()
 
 void CScene::CreateTile(UINT _iXCount, UINT _iYCount)
 {
+	DeleteGroup(GROUP_TYPE::TILE);
+
 	m_iTileX = _iXCount;
 	m_iTileY = _iYCount;
 
@@ -99,4 +102,36 @@ void CScene::CreateTile(UINT _iXCount, UINT _iYCount)
 			AddObject(pTile, GROUP_TYPE::TILE);
 		}
 	}
+}
+
+void CScene::LoadTile(const wstring& _strRelativePath)
+{
+	// 절대경로 만들기
+	wstring strFilePath = CPathMgr::GetInst()->GetContentPath();
+	strFilePath += _strRelativePath;
+
+	FILE* pFile = nullptr;
+
+	// 읽기모드는 경로에 파일이 존재하지 않으면 파일 실패한다.
+	_wfopen_s(&pFile, strFilePath.c_str(), L"rb");
+	assert(pFile);
+
+	// 타일 가로 세로 개수 불러오기
+	UINT xCount = 0;
+	UINT yCount = 0;
+
+	fread(&xCount, sizeof(UINT), 1, pFile);
+	fread(&yCount, sizeof(UINT), 1, pFile);
+
+	// 불러온 개수에 맞게 EmptyTile 들 만들어주기
+	CreateTile(xCount, yCount);
+
+	// 만들어진 타일 개별로 필요한 정보를 불러오게 함
+	const vector<CObject*>& vecTile = GetGroupObject(GROUP_TYPE::TILE);
+	for (size_t i = 0; i < vecTile.size(); ++i)
+	{
+		((CTile*)vecTile[i])->Load(pFile);
+	}
+
+	fclose(pFile);
 }
