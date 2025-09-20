@@ -5,6 +5,7 @@
 class CPanelUI : public CUI
 {
 private:
+	Vec2 m_vDragStart;
 
 public:
 	virtual void MouseOn();

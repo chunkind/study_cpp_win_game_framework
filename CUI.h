@@ -18,12 +18,8 @@ public:
 	Vec2 GetFinalPos() { return m_vFinalPos; }
 	CUI* GetParent() { return m_pParentUI; }
 	bool IsMouseOn() { return m_bMouseOn; }
-
-	void AddChild(CUI* _pUI)
-	{
-		m_vecChildUI.push_back(_pUI); 
-		_pUI->m_pParentUI = this;
-	}
+	bool IsLbtnDown() { return m_bLbtnDown; }
+	void AddChild(CUI* _pUI){ m_vecChildUI.push_back(_pUI); _pUI->m_pParentUI = this; }
 	const vector<CUI*>& GetChildUI() { return m_vecChildUI; }
 
 public:
