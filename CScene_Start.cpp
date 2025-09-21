@@ -64,10 +64,15 @@ void CScene_Start::Enter()
 		pMonsterObj->SetScale(Vec2(fObjScale, fObjScale));
 		AddObject(pMonsterObj, GROUP_TYPE::MONSTER);
 	}
+	
+	// 타일 로딩
+	//LoadTile(L"Tile\\Start.tile");
 
+	// 충돌 지정
 	CCollisionMgr::GetInst()->CheckGroup(GROUP_TYPE::PLAYER, GROUP_TYPE::MONSTER);
 	CCollisionMgr::GetInst()->CheckGroup(GROUP_TYPE::MONSTER, GROUP_TYPE::PROJ_PLAYER);
 
+	// 카메라 Look 지정
 	CCamera::GetInst()->SetLookAt(vResolution / 2.f);
 }
 
