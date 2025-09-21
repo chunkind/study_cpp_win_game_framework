@@ -1,19 +1,20 @@
 #pragma once
 
+class CTexture;
+
 class CCore
 {
 	SINGLE(CCore)
 
 private:
-	HWND	m_hWnd;
-	POINT	m_ptResolution;
-	HDC		m_hDC;
+	HWND		m_hWnd;
+	POINT		m_ptResolution;
+	HDC			m_hDC;
 
-	HBITMAP	m_hBit;
-	HDC		m_memDC;
+	CTexture*	m_pMemTex; // 백버퍼 텍스쳐
 
-	HBRUSH m_arrBrush[(UINT)BRUSH_TYPE::END];
-	HPEN m_arrPen[(UINT)PEN_TYPE::END];
+	HBRUSH		m_arrBrush[(UINT)BRUSH_TYPE::END];
+	HPEN		m_arrPen[(UINT)PEN_TYPE::END];
 
 public:
 	int init(HWND _hWnd, POINT _ptResolution);
