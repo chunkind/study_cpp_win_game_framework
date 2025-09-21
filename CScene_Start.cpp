@@ -74,6 +74,9 @@ void CScene_Start::Enter()
 
 	// 카메라 Look 지정
 	CCamera::GetInst()->SetLookAt(vResolution / 2.f);
+
+	// Camera 효과 지정
+	CCamera::GetInst()->FadeOut(5.f);
 }
 
 void CScene_Start::Exit()

@@ -49,8 +49,9 @@ int CCore::init(HWND _hWnd, POINT _ptResultution)
 	CPathMgr::GetInst()->init();
 	CTimeMgr::GetInst()->init();
 	CKeyMgr::GetInst()->init();
+	CCamera::GetInst()->init();
 	CSceneMgr::GetInst()->init();
-
+	
 	return S_OK;
 }
 
@@ -83,6 +84,7 @@ void CCore::progress()
 	Rectangle(m_pMemTex->GetDC(), -1, -1, m_ptResolution.x + 1, m_ptResolution.y + 1);
 
 	CSceneMgr::GetInst()->render(m_pMemTex->GetDC());
+	CCamera::GetInst()->render(m_pMemTex->GetDC());
 
 	BitBlt(m_hDC, 0, 0, m_ptResolution.x, m_ptResolution.y, m_pMemTex->GetDC(), 0, 0, SRCCOPY);
 

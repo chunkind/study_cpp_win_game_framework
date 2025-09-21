@@ -37,4 +37,7 @@ void CTexture::Create(UINT _iWidth, UINT _iHeight)
 
 	HBITMAP hOldBit = (HBITMAP)::SelectObject(m_dc, m_hBit);
 	::DeleteObject(hOldBit);
+
+	// ∫Ò∆Æ∏  ¡§∫∏
+	::GetObject(m_hBit, sizeof(BITMAP), &m_bitInfo);
 }
