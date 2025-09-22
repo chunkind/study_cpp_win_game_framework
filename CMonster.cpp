@@ -7,10 +7,7 @@
 #include "CCollider.h"
 
 CMonster::CMonster()
-	: m_vCenterPos(Vec2(0.f, 0.f))
-	, m_fSpeed(100.f)
-	, m_fMaxDistance(50.f)
-	, m_iDir(1)
+	: m_fSpeed(100.f)
 	, m_iHP(5)
 	, m_pTex(nullptr)
 {
@@ -65,6 +62,12 @@ void CMonster::render(HDC _dc)
 	::DeleteDC(hdcTmp);
 
 	component_render(_dc);
+}
+
+void CMonster::SetAI(AI* _AI)
+{
+	m_pAI = _AI;
+	m_pAI->m_pOwner = this;
 }
 
 void CMonster::OnCollisionEnter(CCollider* _pOther)

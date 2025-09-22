@@ -9,6 +9,9 @@
 #include "CCollisionMgr.h"
 #include "CKeyMgr.h"
 #include "CCamera.h"
+#include "AI.h"
+#include "CIdleState.h"
+#include "CTraceState.h"
 
 CScene_Start::CScene_Start()
 {
@@ -44,13 +47,15 @@ void CScene_Start::Enter()
 	// 카메라 클릭, 키보드 이동 테스트로 잠시 주석
 	//CCamera::GetInst()->SetTarget(pObj);
 
-	int iMonCount = 2;
+	int iMonCount = 1;
 
-	float fMoveDist = 25.f;
 	float fObjScale = 50.f;
 
 	Vec2 vResolution = CCore::GetInst()->GetResolution();
-	float fTerm = (vResolution.x - ((fMoveDist + fObjScale / 2.f) * 2)) / (float)(iMonCount - 1);
+
+	AI* pAI = new AI;
+	pAI->AddState(new CIdleState);
+	pAI->AddState(new CTraceState);
 
 	CMonster* pMonsterObj = nullptr;
 
@@ -58,10 +63,10 @@ void CScene_Start::Enter()
 	{
 		pMonsterObj = new CMonster;
 		pMonsterObj->SetName(L"Monster");
-		pMonsterObj->SetPos(Vec2((fMoveDist + fObjScale / 2.f) + (float)i * fTerm, 50.f));
-		pMonsterObj->SetCenterPos(pMonsterObj->GetPos());
-		pMonsterObj->SetMoveDistance(fMoveDist);
 		pMonsterObj->SetScale(Vec2(fObjScale, fObjScale));
+		pMonsterObj->SetPos(vResolution / 2.f - Vec2(0.f, 300.f));
+		pMonsterObj->SetAI(pAI);
+
 		AddObject(pMonsterObj, GROUP_TYPE::MONSTER);
 	}
 	

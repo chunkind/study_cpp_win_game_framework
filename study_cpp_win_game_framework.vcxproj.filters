@@ -236,6 +236,9 @@
     <ClInclude Include="CIdleState.h">
       <Filter>Engine\08. Module\AI\State\Idle</Filter>
     </ClInclude>
+    <ClInclude Include="CTraceState.h">
+      <Filter>Engine\08. Module\AI\State\Trace</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="study_cpp_win_game_framework.rc">
@@ -347,6 +350,9 @@
     </ClCompile>
     <ClCompile Include="CIdleState.cpp">
       <Filter>Engine\08. Module\AI\State\Idle</Filter>
+    </ClCompile>
+    <ClCompile Include="CTraceState.cpp">
+      <Filter>Engine\08. Module\AI\State\Trace</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
