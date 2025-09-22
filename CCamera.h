@@ -45,7 +45,15 @@ public:
 	Vec2 GetRenderPos(Vec2 _vObjPos) { return _vObjPos - m_vDiff; }
 	Vec2 GetRealPos(Vec2 _vRenderPos) { return _vRenderPos + m_vDiff; }
 
-	void FadeIn();
+	void FadeIn(float _fDuration)
+	{
+		m_eEffect = CAM_EFFECT::FADE_IN;
+		m_fEffectDuration = _fDuration;
+
+		if (0.f == m_fEffectDuration)
+			assert(nullptr);
+	}
+
 	void FadeOut(float _fDuration)
 	{
 		m_eEffect = CAM_EFFECT::FADE_OUT;

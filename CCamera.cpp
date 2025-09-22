@@ -35,25 +35,30 @@ void CCamera::render(HDC _dc)
 	if (CAM_EFFECT::NONE == m_eEffect)
 		return;
 
+	// 시간 누적값을 체크해서
+	m_fCurTime += fDT;
+
+	// 진행 시간이 이펙트 최대 지정 시간을 넘어선 경우
+	if (m_fEffectDuration < m_fCurTime)
+	{
+		// 효과 종료
+		m_eEffect = CAM_EFFECT::NONE;
+		return;
+	}
+
 	float fRatio = 0.f; // 이펙트 진행 비율
+	fRatio = m_fCurTime / m_fEffectDuration;
+
+	int iAlpha = 0;
 
 	if (CAM_EFFECT::FADE_OUT == m_eEffect)
 	{
-		// 시간 누적값을 체크해서
-		m_fCurTime += fDT;
-
-		// 진행 시간이 이펙트 최대 지정 시간을 넘어선 경우
-		if (m_fEffectDuration < m_fCurTime)
-		{
-			// 효과 종료
-			m_eEffect = CAM_EFFECT::NONE;
-			return;
-		}
-
-		fRatio = m_fCurTime / m_fEffectDuration;
+		iAlpha = (int)(255.f * fRatio);
 	}
-
-	int iAlpha = (int)(255.f * fRatio);
+	else if (CAM_EFFECT::FADE_IN == m_eEffect)
+	{
+		iAlpha = (int)(255.f * (1.f - fRatio));
+	}
 
 	BLENDFUNCTION bf = {};
 
