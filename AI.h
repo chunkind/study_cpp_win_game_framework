@@ -16,6 +16,7 @@ public:
 public:
 	void AddState(CState* _pState);
 	CState* GetState(MON_STATE _eState);
+	void SetCurState(MON_STATE _eState);
 
 public:
 	AI();

@@ -1,5 +1,7 @@
 #pragma once
 
+#include "CMonFactory.h"
+
 class CObject;
 
 class CScene

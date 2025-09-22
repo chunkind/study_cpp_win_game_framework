@@ -12,7 +12,7 @@ CIdleState::~CIdleState()
 
 void CIdleState::update()
 {
-
+	
 }
 
 void CIdleState::Enter()

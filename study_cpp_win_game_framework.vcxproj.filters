@@ -119,6 +119,12 @@
     <Filter Include="Engine\08. Module\AI\State\Trace">
       <UniqueIdentifier>{a2bce591-ede7-4ea8-8433-4bc800e9043e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\09. Factory">
+      <UniqueIdentifier>{b1a1b072-fd0b-4f8f-8b27-c87ad4e1c90f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\09. Factory\MonFactory">
+      <UniqueIdentifier>{e8332010-2633-42e4-b1b7-ecb13ba1e582}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -239,6 +245,9 @@
     <ClInclude Include="CTraceState.h">
       <Filter>Engine\08. Module\AI\State\Trace</Filter>
     </ClInclude>
+    <ClInclude Include="CMonFactory.h">
+      <Filter>Engine\09. Factory\MonFactory</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="study_cpp_win_game_framework.rc">
@@ -353,6 +362,9 @@
     </ClCompile>
     <ClCompile Include="CTraceState.cpp">
       <Filter>Engine\08. Module\AI\State\Trace</Filter>
+    </ClCompile>
+    <ClCompile Include="CMonFactory.cpp">
+      <Filter>Engine\09. Factory\MonFactory</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

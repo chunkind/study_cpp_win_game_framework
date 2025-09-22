@@ -47,28 +47,10 @@ void CScene_Start::Enter()
 	// 카메라 클릭, 키보드 이동 테스트로 잠시 주석
 	//CCamera::GetInst()->SetTarget(pObj);
 
-	int iMonCount = 1;
-
-	float fObjScale = 50.f;
-
+	// 몬스터 배치
 	Vec2 vResolution = CCore::GetInst()->GetResolution();
-
-	AI* pAI = new AI;
-	pAI->AddState(new CIdleState);
-	pAI->AddState(new CTraceState);
-
-	CMonster* pMonsterObj = nullptr;
-
-	for (int i = 0; i < iMonCount; ++i)
-	{
-		pMonsterObj = new CMonster;
-		pMonsterObj->SetName(L"Monster");
-		pMonsterObj->SetScale(Vec2(fObjScale, fObjScale));
-		pMonsterObj->SetPos(vResolution / 2.f - Vec2(0.f, 300.f));
-		pMonsterObj->SetAI(pAI);
-
-		AddObject(pMonsterObj, GROUP_TYPE::MONSTER);
-	}
+	CMonster* pMon = CMonFactory::CreateMonster(MON_TYPE::NORMAL, vResolution / 2.f - Vec2(0.f, 300.f));
+	AddObject(pMon, GROUP_TYPE::MONSTER);
 	
 	// 타일 로딩
 	//LoadTile(L"Tile\\Start.tile");

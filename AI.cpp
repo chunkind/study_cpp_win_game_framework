@@ -36,3 +36,9 @@ CState* AI::GetState(MON_STATE _eState)
 
 	return iter->second;
 }
+
+void AI::SetCurState(MON_STATE _eState)
+{
+	m_pCurState = GetState(_eState);
+	assert(m_pCurState); // 없는 state 설정하면 에러
+}

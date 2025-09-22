@@ -7,8 +7,7 @@
 #include "CCollider.h"
 
 CMonster::CMonster()
-	: m_fSpeed(100.f)
-	, m_iHP(5)
+	: m_tInfo{}
 	, m_pTex(nullptr)
 {
 	m_pTex = CResMgr::GetInst()->LoadTexture(L"EnemyTex", L"texture\\Enemy.bmp");
@@ -76,9 +75,6 @@ void CMonster::OnCollisionEnter(CCollider* _pOther)
 
 	if (pOtherObj->GetName() == L"Missile_Player")
 	{
-		m_iHP -= 1;
 
-		if (m_iHP <= 0)
-			DeleteObject(this);
 	}
 }
