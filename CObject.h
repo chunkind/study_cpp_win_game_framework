@@ -2,6 +2,7 @@
 
 #include "CCamera.h"
 
+class AI;
 class CCollider;
 class CAnimator;
 

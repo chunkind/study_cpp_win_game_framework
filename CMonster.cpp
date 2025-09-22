@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "CMonster.h"
+#include "AI.h"
 #include "CTimeMgr.h"
 #include "CResMgr.h"
 #include "CTexture.h"
@@ -20,23 +21,13 @@ CMonster::CMonster()
 
 CMonster::~CMonster()
 {
+	if (nullptr != m_pAI)
+		delete m_pAI;
 }
 
 void CMonster::update()
 {
-	Vec2 vCurPos = GetPos();
-
-	vCurPos.x += fDT * m_fSpeed * m_iDir;
-
-	float fDist = abs(m_vCenterPos.x - vCurPos.x) - m_fMaxDistance;
-
-	if (0.f < fDist)
-	{
-		m_iDir *= -1;
-		vCurPos.x += fDist * m_iDir;
-	}
-
-	SetPos(vCurPos);
+	m_pAI->update();
 }
 
 void CMonster::render(HDC _dc)
