@@ -1,6 +1,5 @@
 #include "pch.h"
 #include "CState.h"
-//new
 #include "CMonster.h"
 #include "AI.h"
 
@@ -13,7 +12,6 @@ CState::~CState()
 {
 }
 
-//new
 CMonster* CState::GetMonster()
 {
 	return m_pAI->GetOwner();

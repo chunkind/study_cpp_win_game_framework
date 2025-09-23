@@ -43,7 +43,6 @@ void AI::SetCurState(MON_STATE _eState)
 	assert(m_pCurState); // 없는 state 설정하면 에러
 }
 
-//new
 void AI::ChangeState(MON_STATE _eNextState)
 {
 	CState* pNextState = GetState(_eNextState);

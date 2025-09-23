@@ -1,7 +1,6 @@
 #pragma once
 
 class AI;
-//new
 class CMonster;
 
 class CState
@@ -13,7 +12,6 @@ private:
 public:
 	AI* GetAI() { return m_pAI; }
 	MON_STATE GetType() { return m_eState; }
-	//new
 	CMonster* GetMonster();
 
 public:

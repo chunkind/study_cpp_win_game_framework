@@ -26,7 +26,6 @@ public:
     float GetSpeed() { return m_tInfo.fSpeed; }
     void SetSpeed(float _f) { m_tInfo.fSpeed = _f; }
     void SetAI(AI* _AI);
-    //new
     const tMonInfo& GetInfo() { return m_tInfo; }
 
 private:

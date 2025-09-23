@@ -3,10 +3,8 @@
 #include "CObject.h"
 #include "CSceneMgr.h"
 #include "CScene.h"
-//new
 #include "AI.h"
 #include "CState.h"
-
 #include "CUIMgr.h"
 
 CEventMgr::CEventMgr()
@@ -67,7 +65,6 @@ void CEventMgr::Excute(const tEvent& _eve)
 		CUIMgr::GetInst()->SetFocusedUI(nullptr);
 	}
 		break;
-	//new
 	case EVENT_TYPE::CHANGE_AI_STATE:
 	{
 		//lParam: AI

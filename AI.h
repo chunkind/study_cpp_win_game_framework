@@ -18,7 +18,6 @@ public:
 	CState* GetState(MON_STATE _eState);
 	void SetCurState(MON_STATE _eState);
 
-	//new
 	void ChangeState(MON_STATE _eNextState);
 	CMonster* GetOwner() { return m_pOwner; }
 

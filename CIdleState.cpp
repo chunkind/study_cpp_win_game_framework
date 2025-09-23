@@ -1,6 +1,5 @@
 #include "pch.h"
 #include "CIdleState.h"
-//new
 #include "CSceneMgr.h"
 #include "CScene.h"
 #include "CPlayer.h"
@@ -17,21 +16,17 @@ CIdleState::~CIdleState()
 
 void CIdleState::update()
 {
-	//new
 	// Player의 위치 체크
 	CPlayer* pPlayer = (CPlayer*)CSceneMgr::GetInst()->GetCurScene()->GetPlayer();
 	Vec2 vPlayerPos = pPlayer->GetPos();
 
-	//new
 	// 몬스터의 범위 안에 들어오면 추적상태로 전환
 	CMonster* pMonster = GetMonster();
 	Vec2 vMonPos = pMonster->GetPos();
 
-	//new
 	Vec2 vDiff = vPlayerPos - vMonPos;
 	float fLen = vDiff.Length();
 
-	//new
 	// 플레이어가 몬스터의 인식범위 안으로 진입
 	if (fLen < pMonster->GetInfo().fRecogRange)
 	{
