@@ -42,3 +42,13 @@ void AI::SetCurState(MON_STATE _eState)
 	m_pCurState = GetState(_eState);
 	assert(m_pCurState); // 없는 state 설정하면 에러
 }
+
+//new
+void AI::ChangeState(MON_STATE _eNextState)
+{
+	CState* pNextState = GetState(_eNextState);
+	assert(m_pCurState != pNextState);
+	m_pCurState->Exit();
+	m_pCurState = pNextState;
+	m_pCurState->Enter();
+}

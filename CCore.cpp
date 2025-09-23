@@ -132,7 +132,11 @@ void CCore::DivideMenu()
 
 void CCore::ChangeWindowSize(Vec2 _vResolution, bool _bMenu)
 {
-	RECT rt = { 0, 0, _vResolution.x, _vResolution.y };
+	//old
+	//RECT rt = { 0, 0, _vResolution.x, _vResolution.y };
+	//new
+	RECT rt = { 0, 0, (long)_vResolution.x, (long)_vResolution.y };
+
 	::AdjustWindowRect(&rt, WS_OVERLAPPEDWINDOW, _bMenu);
 	::SetWindowPos(m_hWnd, nullptr, 100, 100, rt.right - rt.left, rt.bottom - rt.top, 0);
 }

@@ -10,6 +10,9 @@
 CScene::CScene()
 	: m_iTileX(0)
 	, m_iTileY(0)
+	//new
+	, m_pPlayer(nullptr)
+
 {
 }
 

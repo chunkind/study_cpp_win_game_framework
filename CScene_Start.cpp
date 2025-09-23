@@ -44,6 +44,9 @@ void CScene_Start::Enter()
 	pObj->SetScale(Vec2(100.f, 100.f));
 	AddObject(pObj, GROUP_TYPE::PLAYER);
 
+	//new
+	RegisterPlayer(pObj);
+
 	// 카메라 클릭, 키보드 이동 테스트로 잠시 주석
 	//CCamera::GetInst()->SetTarget(pObj);
 
