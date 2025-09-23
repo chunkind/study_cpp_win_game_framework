@@ -125,6 +125,12 @@
     <Filter Include="Engine\09. Factory\MonFactory">
       <UniqueIdentifier>{e8332010-2633-42e4-b1b7-ecb13ba1e582}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\07. Component\Colllider">
+      <UniqueIdentifier>{8d3e2a9e-aff4-4217-a207-cb3a59fa46fc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\07. Component\RigidBody">
+      <UniqueIdentifier>{b530ae68-c803-467f-ab7b-d13c119111bd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -188,9 +194,6 @@
     <ClInclude Include="CResMgr.h">
       <Filter>Engine\03. Manager\ResMgr</Filter>
     </ClInclude>
-    <ClInclude Include="CCollider.h">
-      <Filter>Engine\07. Component</Filter>
-    </ClInclude>
     <ClInclude Include="SelectGDI.h">
       <Filter>Engine\08. Module</Filter>
     </ClInclude>
@@ -247,6 +250,12 @@
     </ClInclude>
     <ClInclude Include="CMonFactory.h">
       <Filter>Engine\09. Factory\MonFactory</Filter>
+    </ClInclude>
+    <ClInclude Include="CCollider.h">
+      <Filter>Engine\07. Component\Colllider</Filter>
+    </ClInclude>
+    <ClInclude Include="CRigidBody.h">
+      <Filter>Engine\07. Component\RigidBody</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -309,9 +318,6 @@
     <ClCompile Include="CResMgr.cpp">
       <Filter>Engine\03. Manager\ResMgr</Filter>
     </ClCompile>
-    <ClCompile Include="CCollider.cpp">
-      <Filter>Engine\07. Component</Filter>
-    </ClCompile>
     <ClCompile Include="SelectGDI.cpp">
       <Filter>Engine\08. Module</Filter>
     </ClCompile>
@@ -365,6 +371,12 @@
     </ClCompile>
     <ClCompile Include="CMonFactory.cpp">
       <Filter>Engine\09. Factory\MonFactory</Filter>
+    </ClCompile>
+    <ClCompile Include="CCollider.cpp">
+      <Filter>Engine\07. Component\Colllider</Filter>
+    </ClCompile>
+    <ClCompile Include="CRigidBody.cpp">
+      <Filter>Engine\07. Component\RigidBody</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

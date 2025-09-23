@@ -5,19 +5,21 @@
 class AI;
 class CCollider;
 class CAnimator;
+class CRigidBody;
 
 class CObject
 {
 private:
-	wstring m_strName;
+	wstring			m_strName;
 
-	Vec2 m_vPos;
-	Vec2 m_vScale;
+	Vec2			m_vPos;
+	Vec2			m_vScale;
 
-	CCollider* m_pCollider;
-	CAnimator* m_pAnimator;
+	CCollider*		m_pCollider;
+	CAnimator*		m_pAnimator;
+	CRigidBody*		m_pRigidBody;
 
-	bool m_bAlive;
+	bool			m_bAlive;
 
 public:
 	void SetPos(Vec2 _vPos) { m_vPos = _vPos; }
@@ -31,11 +33,13 @@ public:
 
 	CCollider* GetCollider() { return m_pCollider; }
 	CAnimator* GetAnimator() { return m_pAnimator; }
+	CRigidBody* GetRigidBody() { return m_pRigidBody; }
 
 	bool IsDead() { return !m_bAlive; }
 
 	void CreateCollider();
 	void CreateAnimator();
+	void CreateRigidBody();
 
 	virtual void OnCollision(CCollider* _pOther) {};
 	virtual void OnCollisionEnter(CCollider* _pOther) {};
