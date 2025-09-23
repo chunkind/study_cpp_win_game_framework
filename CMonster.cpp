@@ -23,7 +23,8 @@ CMonster::~CMonster()
 
 void CMonster::update()
 {
-	m_pAI->update();
+	if (nullptr != m_pAI)
+		m_pAI->update();
 }
 
 void CMonster::render(HDC _dc)
