@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "CMonFactory.h"
+#include "CRigidBody.h"
 #include "CMonster.h"
 #include "AI.h"
 #include "CIdleState.h"
@@ -24,6 +25,8 @@ CMonster* CMonFactory::CreateMonster(MON_TYPE _eType, Vec2 _vPos)
 		info.fSpeed = 150.f;
 
 		pMon->SetMonInfo(info);
+		pMon->CreateRigidBody();
+		pMon->GetRigidBody()->SetMass(1.f);
 
 		//잠시 주석
 		/*AI* pAI = new AI;
