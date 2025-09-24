@@ -12,6 +12,7 @@
 #include "CAnimator.h"
 #include "CAnimation.h"
 #include "CRigidBody.h"
+#include "CGravity.h"
 
 CPlayer::CPlayer()
 	: m_eCurState(PLAYER_STATE::IDLE)
@@ -20,8 +21,8 @@ CPlayer::CPlayer()
 	, m_iPrevDir(1)
 {
 	CreateCollider();
-	GetCollider()->SetOffsetPos(Vec2(0.f, 12.f));
-	GetCollider()->SetScale(Vec2(20.f, 40.f));
+	GetCollider()->SetOffsetPos(Vec2(0.f, 20.f));
+	GetCollider()->SetScale(Vec2(20.f, 20.f));
 
 	CreateRigidBody();
 
@@ -31,10 +32,11 @@ CPlayer::CPlayer()
 
 	GetAnimator()->CreateAnimation(L"IDLE_LEFT", pTex, Vec2(0.f, 65.f * 1.f), Vec2(60.f, 65.f), Vec2(60.f, 0.f), 0.1f, 3);
 	GetAnimator()->CreateAnimation(L"IDLE_RIGHT", pTex, Vec2(0.f, 65.f * 3.f), Vec2(60.f, 65.f), Vec2(60.f, 0.f), 0.1f, 3);
+
 	GetAnimator()->CreateAnimation(L"WALK_LEFT", pTex, Vec2(0.f, 65.f * 5.f), Vec2(60.f, 65.f), Vec2(60.f, 0.f), 0.1f, 10);
 	GetAnimator()->CreateAnimation(L"WALK_RIGHT", pTex, Vec2(0.f, 65.f * 7.f), Vec2(60.f, 65.f), Vec2(60.f, 0.f), 0.1f, 10);
 
-	GetAnimator()->Play(L"IDLE_LEFT", true);
+	CreateGravity();
 
 }
 
@@ -156,4 +158,10 @@ void CPlayer::update_animation()
 
 		break;
 	}
+}
+
+void CPlayer::update_gravity()
+{
+	// 아래 방향으로 힘을 준다.
+	GetRigidBody()->AddForce(Vec2(0.f, 500.f));
 }

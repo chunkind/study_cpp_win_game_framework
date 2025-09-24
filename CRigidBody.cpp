@@ -30,10 +30,13 @@ void CRigidBody::finalupdate()
 
 		// 가속도
 		m_vAccel = m_vForce * m_fAccel;
-
-		// 속도
-		m_vVelocity += m_vAccel * fDT;
 	}
+
+	// 추가 가속도
+	m_vAccel += m_vAccelA;
+
+	// 속도
+	m_vVelocity += m_vAccel * fDT;
 
 	// 마찰력에의한 반대방향으로의 가속도
 	if (!m_vVelocity.IsZero())
@@ -65,6 +68,10 @@ void CRigidBody::finalupdate()
 
 	// 힘 초기화
 	m_vForce = Vec2(0.f, 0.f);
+
+	// 가속도 초기화
+	m_vAccel = Vec2(0.f, 0.f);
+	m_vAccelA = Vec2(0.f, 0.f);
 }
 
 void CRigidBody::Move()

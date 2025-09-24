@@ -7,6 +7,7 @@ enum class PLAYER_STATE
     IDLE,
     WALK,
     ATTACK,
+    JUMP,
     DEAD,
 };
 
@@ -41,6 +42,7 @@ private:
     void update_state();
     void update_move();
     void update_animation();
+    void update_gravity();
 
     CLONE(CPlayer)
 
