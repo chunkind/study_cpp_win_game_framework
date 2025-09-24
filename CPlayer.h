@@ -27,9 +27,10 @@ class CPlayer : public CObject
 private:
     vector<CObject*>    m_vecColObj;
 
-    PLAYER_STATE        m_eCurState; // 현재 상태
-    PLAYER_STATE        m_ePrevState; // 이전 상태
-    int                 m_iDir;
+    PLAYER_STATE        m_eCurState;    // 현재 상태
+    PLAYER_STATE        m_ePrevState;   // 이전 상태
+    int                 m_iDir;         // 현재 방향
+    int                 m_iPrevDir;     // 이전 방향
 
 public:
     virtual void update();

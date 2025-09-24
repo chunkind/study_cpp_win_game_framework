@@ -15,7 +15,9 @@
 
 CPlayer::CPlayer()
 	: m_eCurState(PLAYER_STATE::IDLE)
+	, m_ePrevState(PLAYER_STATE::WALK)
 	, m_iDir(1)
+	, m_iPrevDir(1)
 {
 	CreateCollider();
 	GetCollider()->SetOffsetPos(Vec2(0.f, 12.f));
@@ -32,7 +34,7 @@ CPlayer::CPlayer()
 	GetAnimator()->CreateAnimation(L"WALK_LEFT", pTex, Vec2(0.f, 65.f * 5.f), Vec2(60.f, 65.f), Vec2(60.f, 0.f), 0.1f, 10);
 	GetAnimator()->CreateAnimation(L"WALK_RIGHT", pTex, Vec2(0.f, 65.f * 7.f), Vec2(60.f, 65.f), Vec2(60.f, 0.f), 0.1f, 10);
 
-	GetAnimator()->Play(L"IDLE_RIGHT", true);
+	GetAnimator()->Play(L"IDLE_LEFT", true);
 
 }
 
@@ -57,6 +59,7 @@ void CPlayer::update()
 	GetAnimator()->update();
 
 	m_ePrevState = m_eCurState;
+	m_iPrevDir = m_iDir;
 }
 
 void CPlayer::render(HDC _dc)
@@ -90,20 +93,19 @@ void CPlayer::update_state()
 		m_iDir = 1;
 		m_eCurState = PLAYER_STATE::WALK;
 	}
+
+	if (0.f == GetRigidBody()->GetSpeed())
+	{
+		m_eCurState = PLAYER_STATE::IDLE;
+	}
+
+	
 }
 
 void CPlayer::update_move()
 {
 	CRigidBody* pRigid = GetRigidBody();
 
-	if (KEY_HOLD(KEY::W))
-	{
-		pRigid->AddForce(Vec2(0.f, -200.f));
-	}
-	if (KEY_HOLD(KEY::S))
-	{
-		pRigid->AddForce(Vec2(0.f, 200.f));
-	}
 	if (KEY_HOLD(KEY::A))
 	{
 		pRigid->AddForce(Vec2(-200.f, 0.f));
@@ -113,14 +115,6 @@ void CPlayer::update_move()
 		pRigid->AddForce(Vec2(200.f, 0.f));
 	}
 
-	if (KEY_TAP(KEY::W))
-	{
-		pRigid->AddVelocity(Vec2(0.f, -100.f));
-	}
-	if (KEY_TAP(KEY::S))
-	{
-		pRigid->AddVelocity(Vec2(0.f, 100.f));
-	}
 	if (KEY_TAP(KEY::A))
 	{
 		pRigid->AddVelocity(Vec2(-100.f, 0.f));
@@ -133,16 +127,27 @@ void CPlayer::update_move()
 
 void CPlayer::update_animation()
 {
-	if (m_ePrevState == m_eCurState)
+	if (m_ePrevState == m_eCurState && m_iPrevDir == m_iDir)
 		return;
 
 	switch (m_eCurState)
 	{
 	case PLAYER_STATE::IDLE:
+	{
+		if (m_iDir == -1)
+			GetAnimator()->Play(L"IDLE_LEFT", true);
+		else
+			GetAnimator()->Play(L"IDLE_RIGHT", true);
+	}
 
 		break;
 	case PLAYER_STATE::WALK:
-
+	{
+		if (m_iDir == -1)
+			GetAnimator()->Play(L"WALK_LEFT", true);
+		else
+			GetAnimator()->Play(L"WALK_RIGHT", true);
+	}
 		break;
 	case PLAYER_STATE::ATTACK:
 
