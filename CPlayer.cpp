@@ -58,6 +58,11 @@ void CPlayer::update()
 		CreateMissile();
 	}
 
+	if (KEY_TAP(KEY::ENTER))
+	{
+		SetPos(Vec2(640.f, 384.f));
+	}
+
 	GetAnimator()->update();
 
 	m_ePrevState = m_eCurState;

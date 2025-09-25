@@ -11,10 +11,10 @@ private:
 	Vec2		m_vAccel;		// 가속도
 	Vec2		m_vAccelA;		// 추가 가속도
 	Vec2		m_vVelocity;	// 속도 (크기: 속력, 방향)
-	
+	Vec2		m_vMaxVelocity;	// 최대 속도
+
 	float		m_fMass;		// 질량
 	float		m_fFricCoeff;	// 마찰 계수
-	float		m_fMaxSpeed;	// 최대 속력
 
 	// F = M * A
 	// V += A * DT // 가속도에 시간 곱해서 속도에 누적시켜주면 현재 속도
@@ -31,7 +31,8 @@ public:
 
 	void SetVelocity(Vec2 _v) { m_vVelocity = _v; }
 	void AddVelocity(Vec2 _v) { m_vVelocity += _v; }
-	void SetMaxVelocity(float _Speed) { m_fMaxSpeed = _Speed; }
+	void SetMaxVelocity(Vec2 _v) { m_vMaxVelocity = _v; }
+
 	void SetAccelAlpha(Vec2 _vAccel) { m_vAccelA = _vAccel; }
 
 private:
