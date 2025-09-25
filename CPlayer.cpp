@@ -91,15 +91,18 @@ void CPlayer::update_state()
 	if (KEY_HOLD(KEY::A))
 	{
 		m_iDir = -1;
-		m_eCurState = PLAYER_STATE::WALK;
+		if (PLAYER_STATE::JUMP != m_eCurState)
+			m_eCurState = PLAYER_STATE::WALK;
 	}
 	if (KEY_HOLD(KEY::D))
 	{
 		m_iDir = 1;
-		m_eCurState = PLAYER_STATE::WALK;
+		if (PLAYER_STATE::JUMP != m_eCurState)
+			m_eCurState = PLAYER_STATE::WALK;
 	}
 
-	if (0.f == GetRigidBody()->GetSpeed())
+	if (0.f == GetRigidBody()->GetSpeed() && PLAYER_STATE::JUMP != m_eCurState)
+
 	{
 		m_eCurState = PLAYER_STATE::IDLE;
 	}
@@ -110,7 +113,7 @@ void CPlayer::update_state()
 
 		if (GetRigidBody())
 		{
-			GetRigidBody()->AddVelocity(Vec2(0.f, -1000.f));
+			GetRigidBody()->AddVelocity(Vec2(0.f, -400.f));
 		}
 	}
 }
@@ -181,4 +184,17 @@ void CPlayer::update_gravity()
 {
 	// 아래 방향으로 힘을 준다.
 	GetRigidBody()->AddForce(Vec2(0.f, 500.f));
+}
+
+void CPlayer::OnCollisionEnter(CCollider* _pOther)
+{
+	CObject* pOtherObj = _pOther->GetObj();
+	if (L"Ground" == pOtherObj->GetName())
+	{
+		Vec2 vPos = GetPos();
+		if (vPos.y < pOtherObj->GetPos().y)
+		{
+			m_eCurState = PLAYER_STATE::IDLE;
+		}
+	}
 }
