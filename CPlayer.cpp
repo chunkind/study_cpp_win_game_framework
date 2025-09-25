@@ -110,7 +110,7 @@ void CPlayer::update_state()
 
 		if (GetRigidBody())
 		{
-			GetRigidBody()->AddVelocity(Vec2(0.f, -200.f));
+			GetRigidBody()->AddVelocity(Vec2(0.f, -1000.f));
 		}
 	}
 }
