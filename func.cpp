@@ -40,6 +40,22 @@ void ChangeAIState(AI* _pAI, MON_STATE _eNextState)
 	CEventMgr::GetInst()->AddEvent(evn);
 }
 
+void FScanf(char* _pOutBuff, FILE* _pFile)
+{
+	int i = 0;
+	while (true)
+	{
+		char c = (char)getc(_pFile);
+		if (c == '\n')
+		{
+			_pOutBuff[i++] = '\0';
+			break;
+		}
+		
+		_pOutBuff[i++] = c;
+	}
+}
+
 void SaveWString(const wstring& _str, FILE* _pFile)
 {
 	// Animation 의 이름을 저장한다.
