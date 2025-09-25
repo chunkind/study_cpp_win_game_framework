@@ -2,6 +2,7 @@
 #include "CResMgr.h"
 #include "CPathMgr.h"
 #include "CTexture.h"
+#include "CSound.h"
 
 CResMgr::CResMgr()
 {
@@ -62,4 +63,36 @@ CTexture* CResMgr::FindTexture(const wstring& _strKey)
 	}
 
 	return (CTexture*)iter->second;
+}
+
+CSound* CResMgr::LoadSound(const wstring& _strKey, const wstring& _strRelativePath)
+{
+	CSound* pSod = FindSound(_strKey);
+	if (nullptr != pSod)
+	{
+		return pSod;
+	}
+
+	wstring strFilePath = CPathMgr::GetInst()->GetContentPath();
+	strFilePath += _strRelativePath;
+
+	pSod = new CSound;
+	pSod->Load(strFilePath);
+	pSod->SetKey(_strKey);
+
+	m_mapSound.insert(make_pair(_strKey, pSod));
+
+	return pSod;
+}
+
+CSound* CResMgr::FindSound(const wstring& _strKey)
+{
+	map<wstring, CRes*>::iterator iter = m_mapSound.find(_strKey);
+
+	if (iter == m_mapSound.end())
+	{
+		return nullptr;
+	}
+
+	return (CSound*)iter->second;
 }

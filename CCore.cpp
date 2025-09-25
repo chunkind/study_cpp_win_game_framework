@@ -12,6 +12,8 @@
 #include "CTexture.h"
 #include "SelectGDI.h"
 #include "Resource.h"
+#include "CSoundMgr.h"
+#include "CSound.h"
 
 CCore::CCore()
 	: m_hWnd(0)
@@ -55,7 +57,17 @@ int CCore::init(HWND _hWnd, POINT _ptResultution)
 	CTimeMgr::GetInst()->init();
 	CKeyMgr::GetInst()->init();
 	CCamera::GetInst()->init();
+	CSoundMgr::GetInst()->init();
 	CSceneMgr::GetInst()->init();
+
+	CResMgr::GetInst()->LoadSound(L"BGM_01", L"sound\\DM.wav");
+	CSound* pNewSound = CResMgr::GetInst()->FindSound(L"BGM_01");
+
+	pNewSound->Play();
+
+	pNewSound->SetPosition(50.f); // 백분률, 소리 위치 설정
+	pNewSound->PlayToBGM(true);
+	pNewSound->SetVolume(60.f);
 	
 	return S_OK;
 }
