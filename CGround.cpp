@@ -38,8 +38,9 @@ void CGround::OnCollisionEnter(CCollider* _pOther)
 		float fLen = abs(vObjPos.y - vPos.y);
 		float fValue = (vObjScale.y / 2.f + vScale.y / 2.f) - fLen;
 
+		// 충돌을 접한상태로 유지하기 위해서 일부로 1픽셀 덜 올려줌
 		vObjPos = pOtherObj->GetPos();
-		vObjPos.y -= fValue;
+		vObjPos.y -= (fValue - 1.f);
 
 		pOtherObj->SetPos(vObjPos);
 	}
@@ -61,6 +62,7 @@ void CGround::OnCollision(CCollider* _pOther)
 		float fLen = abs(vObjPos.y - vPos.y);
 		float fValue = (vObjScale.y / 2.f + vScale.y / 2.f) - fLen;
 
+		// 충돌을 접한상태로 유지하기 위해서 일부로 1펙셀 덜 올려줌
 		vObjPos = pOtherObj->GetPos();
 		vObjPos.y -= (fValue - 1.f); // 왔다갔다 안하려고 1픽셀만 올린다.
 
@@ -74,5 +76,12 @@ void CGround::OnCollisionExit(CCollider* _pOther)
 	if (pOtherObj->GetName() == L"Player")
 	{
 		pOtherObj->GetGravity()->SetGround(false);
+
+		Vec2 vPos = pOtherObj->GetPos();
+		if (GetPos().y > vPos.y)
+		{
+			// 충돌중일때 1픽셀 겹치게 해둔 부분을 감안해서 1픽셀 위로 올려준 채로 충돌을 벗어나게 함
+			pOtherObj->SetPos(Vec2(vPos.x, vPos.y - 1.f));
+		}
 	}
 }
