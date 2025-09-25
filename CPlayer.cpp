@@ -113,7 +113,7 @@ void CPlayer::update_state()
 
 		if (GetRigidBody())
 		{
-			GetRigidBody()->AddVelocity(Vec2(0.f, -400.f));
+			GetRigidBody()->AddVelocity(Vec2(0.f, -300.f));
 		}
 	}
 }
@@ -133,11 +133,11 @@ void CPlayer::update_move()
 
 	if (KEY_TAP(KEY::A))
 	{
-		pRigid->AddVelocity(Vec2(-100.f, 0.f));
+		pRigid->SetVelocity(Vec2(-100.f, pRigid->GetVelocity().y));
 	}
 	if (KEY_TAP(KEY::D))
 	{
-		pRigid->AddVelocity(Vec2(100.f, 0.f));
+		pRigid->SetVelocity(Vec2(100.f, pRigid->GetVelocity().y));
 	}
 }
 
