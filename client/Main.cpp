@@ -75,6 +75,11 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
    return TRUE;
 }
 
+//new
+// 포지션이 x:500, y:300, 크기가 가로 100, 세로 100
+POINT g_ptObjPos = { 500, 300 };
+POINT g_ptObjScale = { 100, 100 };
+
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
     switch (message)
@@ -97,7 +102,31 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             PAINTSTRUCT ps;
             HDC hdc = BeginPaint(hWnd, &ps);
 
-            Rectangle(hdc, 10, 10, 110, 110);
+            //old
+            //Rectangle(hdc, 10, 10, 110, 110);
+            //new
+            // 직접 펜과 브러쉬를 만들어 DC에 적용
+            HPEN hRedPen = CreatePen(PS_SOLID, 1, RGB(255, 0, 0)); // 빨간팬
+            HBRUSH hBlueBrush = CreateSolidBrush(RGB(0, 0, 255)); // 파란 백그라운드색
+
+            //new
+            // 새로만든 펜과 브러쉬를 현재 hdc에 적용
+            // 리턴값은 이전에 사용했던 기본 펜과 기본 브러쉬를 리턴함.
+            HPEN hOldPen = (HPEN)SelectObject(hdc, hRedPen);
+            HBRUSH hOldBrush = (HBRUSH)SelectObject(hdc, hBlueBrush);
+
+            //new
+            // 사각형을 그리면 새로만든 빨간색 팬과 파란색 브러쉬를 이용하여 그려진다.
+            Rectangle(hdc
+                , g_ptObjPos.x - g_ptObjScale.x / 2
+                , g_ptObjPos.y - g_ptObjScale.y / 2
+                , g_ptObjPos.x + g_ptObjScale.x / 2
+                , g_ptObjPos.y + g_ptObjScale.y / 2);
+
+            //new
+            // DC의 펜과 브러쉬를 원래 것으로 되돌림
+            SelectObject(hdc, hOldPen);
+            SelectObject(hdc, hOldBrush);
 
             EndPaint(hWnd, &ps);
         }
