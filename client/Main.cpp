@@ -92,10 +92,19 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             }
         }
         break;
+    /**
+     * 무효화 영역이 발생한 경우 호출된다. (Invalidate)
+     * 1. 다른창에 가려져있다가 다시 나타나는 경우 -> 예전 윈도우 버전에만 작동
+     * 2. 최소화 하였다가 나타나는 경우
+     */
     case WM_PAINT:
         {
             PAINTSTRUCT ps;
-            HDC hdc = BeginPaint(hWnd, &ps);
+            HDC hdc = BeginPaint(hWnd, &ps); // Device Context(그리기), 팬 -> 검은색, 배경 -> 하얀색이 기본
+
+            // 작업영역 0, 0은 작업표시줄 아래 부터 계산하여 0, 0을 정한다.
+            Rectangle(hdc, 10, 10, 110, 110);
+
             EndPaint(hWnd, &ps);
         }
         break;
