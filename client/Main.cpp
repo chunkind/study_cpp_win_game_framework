@@ -2,6 +2,7 @@
 #include "client.h"
 
 HINSTANCE hInst;
+HWND g_hWnd;
 
 ATOM                MyRegisterClass(HINSTANCE hInstance);
 BOOL                InitInstance(HINSTANCE, int);
@@ -59,20 +60,32 @@ ATOM MyRegisterClass(HINSTANCE hInstance)
 
 BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 {
-   hInst = hInstance;
+    hInst = hInstance;
 
-   HWND hWnd = CreateWindowW(L"WinApi", L"Client", WS_OVERLAPPEDWINDOW,
-      CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, nullptr, nullptr, hInstance, nullptr);
+    //old
+    /*HWND hWnd = CreateWindowW(L"WinApi", L"Client", WS_OVERLAPPEDWINDOW,
+        CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, nullptr, nullptr, hInstance, nullptr);*/
+    //new
+    g_hWnd = CreateWindowW(L"WinApi", L"Client", WS_OVERLAPPEDWINDOW,
+        CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, nullptr, nullptr, hInstance, nullptr);
 
-   if (!hWnd)
-   {
-      return FALSE;
-   }
+    //old
+    //if (!hWnd)
+    //new
+    if (!g_hWnd)
 
-   ShowWindow(hWnd, nCmdShow);
-   UpdateWindow(hWnd);
+    {
+        return FALSE;
+    }
 
-   return TRUE;
+    //old
+    /*ShowWindow(hWnd, nCmdShow);
+    UpdateWindow(hWnd);*/
+    //new
+    ShowWindow(g_hWnd, nCmdShow);
+    UpdateWindow(g_hWnd);
+
+    return TRUE;
 }
 
 POINT g_ptObjPos = { 500, 300 };
