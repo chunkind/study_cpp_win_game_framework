@@ -62,26 +62,15 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 {
     hInst = hInstance;
 
-    //old
-    /*HWND hWnd = CreateWindowW(L"WinApi", L"Client", WS_OVERLAPPEDWINDOW,
-        CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, nullptr, nullptr, hInstance, nullptr);*/
-    //new
     g_hWnd = CreateWindowW(L"WinApi", L"Client", WS_OVERLAPPEDWINDOW,
         CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, nullptr, nullptr, hInstance, nullptr);
 
-    //old
-    //if (!hWnd)
-    //new
     if (!g_hWnd)
 
     {
         return FALSE;
     }
 
-    //old
-    /*ShowWindow(hWnd, nCmdShow);
-    UpdateWindow(hWnd);*/
-    //new
     ShowWindow(g_hWnd, nCmdShow);
     UpdateWindow(g_hWnd);
 
