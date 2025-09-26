@@ -118,26 +118,23 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             EndPaint(hWnd, &ps);
         }
         break;
-    //new
-    // 키 입력이 감지되면 호출
     case WM_KEYDOWN:
     {
         switch (wParam)
         {
         case VK_UP:
-            g_ptObjPos.y -= 10; // y값은 위로 갈수록 작아진다.
+            g_ptObjPos.y -= 10;
             break;
         case VK_DOWN:
             g_ptObjPos.y += 10;
             break;
         case VK_LEFT:
-            g_ptObjPos.x -= 10; // x값은 왼쪽으로 갈수록 작아진다.
+            g_ptObjPos.x -= 10;
             break;
         case VK_RIGHT:
             g_ptObjPos.x += 10;
             break;
         }
-        // 좌표수정했으면 강제로 WM_PAINT를 호출
         InvalidateRect(hWnd, nullptr, true);
     }
         break;
