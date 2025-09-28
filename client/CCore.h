@@ -14,6 +14,11 @@ public:
 	int init(HWND _hWnd, POINT _ptResolution);
 	void progress();
 
+//new
+private:
+	void update();
+	void render();
+
 private:
 	CCore();
 	~CCore();
