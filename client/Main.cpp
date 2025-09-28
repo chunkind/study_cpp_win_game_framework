@@ -77,21 +77,15 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
     return TRUE;
 }
 
-//new
 #include <vector>
 using std::vector;
 
-//old
-//POINT g_ptObjPos = { 500, 300 };
-//POINT g_ptObjScale = { 100, 100 };
-//new
 struct tObjInfo
 {
     POINT g_ptObjPos;
     POINT g_ptObjScale;
 };
 
-//new
 vector<tObjInfo> g_vecInfo;
 
 POINT g_ptLT;
@@ -134,13 +128,6 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
                 , g_ptRB.x , g_ptRB.y);
         }
 
-        //old
-        /*Rectangle(hdc
-            , g_ptObjPos.x - g_ptObjScale.x / 2
-            , g_ptObjPos.y - g_ptObjScale.y / 2
-            , g_ptObjPos.x + g_ptObjScale.x / 2
-            , g_ptObjPos.y + g_ptObjScale.y / 2);*/
-        //new
         for (size_t i = 0; i < g_vecInfo.size(); ++i)
         {
             Rectangle(hdc
@@ -149,7 +136,6 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
                 , g_vecInfo[i].g_ptObjPos.x + g_vecInfo[i].g_ptObjScale.x / 2
                 , g_vecInfo[i].g_ptObjPos.y + g_vecInfo[i].g_ptObjScale.y / 2
             );
-            
         }
 
         SelectObject(hdc, hOldPen);
@@ -166,47 +152,28 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         switch (wParam)
         {
         case VK_UP:
-            //old
-            //g_ptObjPos.y -= 10;
-            //new
             for (size_t i = 0; i < g_vecInfo.size(); ++i)
             {
                 g_vecInfo[i].g_ptObjPos.y -= 10;
             }
-
             break;
-
         case VK_DOWN:
-            //old
-            //g_ptObjPos.y += 10;
-            //new
             for (size_t i = 0; i < g_vecInfo.size(); ++i)
             {
                 g_vecInfo[i].g_ptObjPos.y += 10;
             }
-
             break;
-
         case VK_LEFT:
-            //old
-            //g_ptObjPos.x -= 10;
-            //new
             for (size_t i = 0; i < g_vecInfo.size(); ++i)
             {
                 g_vecInfo[i].g_ptObjPos.x -= 10;
             }
-
             break;
-
         case VK_RIGHT:
-            //old
-            //g_ptObjPos.x += 10;
-            //new
             for (size_t i = 0; i < g_vecInfo.size(); ++i)
             {
                 g_vecInfo[i].g_ptObjPos.x += 10;
             }
-
             break;
         }
         InvalidateRect(hWnd, nullptr, true);
@@ -228,20 +195,12 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         break;
     case WM_LBUTTONUP:
     {
-        //old
-        /*g_ptObjPos.x = (g_ptLT.x + g_ptRB.x) / 2;
-        g_ptObjPos.y = (g_ptLT.y + g_ptRB.y) / 2;
-
-        g_ptObjScale.x = abs(g_ptRB.x - g_ptLT.x);
-        g_ptObjScale.y = abs(g_ptRB.y - g_ptLT.y);*/
-        //new
         tObjInfo info = {};
         info.g_ptObjPos.x = (g_ptLT.x + g_ptRB.x) / 2;
         info.g_ptObjPos.y = (g_ptLT.y + g_ptRB.y) / 2;
         info.g_ptObjScale.x = abs(g_ptLT.x - g_ptRB.x);
         info.g_ptObjScale.y = abs(g_ptLT.y - g_ptRB.y);
 
-        //new
         g_vecInfo.push_back(info);
 
         bLbtnDown = false;
