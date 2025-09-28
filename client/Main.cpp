@@ -77,18 +77,12 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
     return TRUE;
 }
 
-//old
-//int g_x = 0;
-//int g_y = 0;
-
 POINT g_ptObjPos = { 500, 300 };
 POINT g_ptObjScale = { 100, 100 };
 
-//new
-POINT g_ptLT; // 좌상단
-POINT g_ptRB; // 우하단
+POINT g_ptLT;
+POINT g_ptRB;
 
-//new
 bool bLbtnDown = false;
 
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
@@ -119,7 +113,6 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         HPEN hOldPen = (HPEN)SelectObject(hdc, hRedPen);
         HBRUSH hOldBrush = (HBRUSH)SelectObject(hdc, hBlueBrush);
 
-        //new
         if (bLbtnDown)
         {
             Rectangle(hdc
@@ -164,24 +157,11 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         break;
     case WM_LBUTTONDOWN:
     {
-        //old
-        /*g_x = LOWORD(lParam);
-        g_y = HIWORD(lParam);
-
-        HDC hdc = GetDC(hWnd);
-
-        wchar_t szText[256];
-        wsprintf(szText, L"Mouse Position: (%d, %d)", g_x, g_y);
-        TextOut(hdc, g_x + 10, g_y + 10, szText, lstrlen(szText));
-
-        ReleaseDC(hWnd, hdc);*/
-        //new
         g_ptLT.x = LOWORD(lParam);
         g_ptLT.y = HIWORD(lParam);
         bLbtnDown = true;
     }
         break;
-    //new
     case WM_MOUSEMOVE:
     {
         g_ptRB.x = LOWORD(lParam);
@@ -189,7 +169,6 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         InvalidateRect(hWnd, nullptr, true);
     }
         break;
-    //new
     case WM_LBUTTONUP:
     {
         g_ptObjPos.x = (g_ptLT.x + g_ptRB.x) / 2;
