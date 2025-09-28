@@ -1,7 +1,5 @@
 #pragma once
 
-#include "Define.h"
-
 class CCore
 {
 public:
