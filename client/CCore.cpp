@@ -1,5 +1,4 @@
 #include "pch.h"
-
 #include "CCore.h"
 
 CCore::CCore()
@@ -12,7 +11,6 @@ CCore::~CCore()
 
 }
 
-//new
 int CCore::init(HWND _hWnd, POINT _ptResolution)
 {
 	m_hWnd = _hWnd;
@@ -21,7 +19,6 @@ int CCore::init(HWND _hWnd, POINT _ptResolution)
 	return S_OK;
 }
 
-//new
 void CCore::progress()
 {
 
