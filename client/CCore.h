@@ -1,8 +1,6 @@
 #pragma once
 
 #include "Define.h"
-//old
-//#include <Windows.h>
 
 class CCore
 {
