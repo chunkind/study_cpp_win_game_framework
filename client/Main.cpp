@@ -2,6 +2,8 @@
 
 #include "framework.h"
 #include "client.h"
+//new
+#include "CCore.h"
 
 HINSTANCE hInst;
 HWND g_hWnd;
@@ -23,6 +25,13 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
         return FALSE;
     }
 
+    //new
+    // core 초기화
+    if (FALSE(CCore::GetInst()->init(g_hWnd, POINT{ 1280, 768 })))
+    {
+        MessageBox(nullptr, L"Core 객체 초기화 실패", L"ERORR", MB_OK);
+    }
+
     HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_CLIENT));
 
     MSG msg;
@@ -39,7 +48,8 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
         }
         else
         {
-
+            //new
+            CCore::GetInst()->progress();
         }
     }
 
