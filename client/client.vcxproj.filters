@@ -11,6 +11,12 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Engine\01. Header">
+      <UniqueIdentifier>{6e2c817b-1e5c-4b5f-83df-64ae22b03be7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\02. Core">
+      <UniqueIdentifier>{aed00cd7-6c88-4b4b-9377-4eb66230dafe}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="client.h">
@@ -24,6 +30,9 @@
     </ClInclude>
     <ClInclude Include="targetver.h">
       <Filter>Default</Filter>
+    </ClInclude>
+    <ClInclude Include="CCore.h">
+      <Filter>Engine\02. Core</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -41,5 +50,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="CCore.cpp">
+      <Filter>Engine\02. Core</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
