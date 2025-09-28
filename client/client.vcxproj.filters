@@ -34,6 +34,9 @@
     <ClInclude Include="CCore.h">
       <Filter>Engine\02. Core</Filter>
     </ClInclude>
+    <ClInclude Include="Define.h">
+      <Filter>Engine\01. Header</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="client.rc">
