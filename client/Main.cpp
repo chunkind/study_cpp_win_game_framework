@@ -77,7 +77,6 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
     return TRUE;
 }
 
-//new
 int g_x = 0;
 int g_y = 0;
 
@@ -89,40 +88,40 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
     switch (message)
     {
     case WM_COMMAND:
+    {
+        int wmId = LOWORD(wParam);
+        switch (wmId)
         {
-            int wmId = LOWORD(wParam);
-            switch (wmId)
-            {
-            case IDM_EXIT:
-                DestroyWindow(hWnd);
-                break;
-            default:
-                return DefWindowProc(hWnd, message, wParam, lParam);
-            }
+        case IDM_EXIT:
+            DestroyWindow(hWnd);
+            break;
+        default:
+            return DefWindowProc(hWnd, message, wParam, lParam);
         }
+    }
         break;
     case WM_PAINT:
-        {
-            PAINTSTRUCT ps;
-            HDC hdc = BeginPaint(hWnd, &ps);
+    {
+        PAINTSTRUCT ps;
+        HDC hdc = BeginPaint(hWnd, &ps);
 
-            HPEN hRedPen = CreatePen(PS_SOLID, 1, RGB(255, 0, 0));
-            HBRUSH hBlueBrush = CreateSolidBrush(RGB(0, 0, 255));
+        HPEN hRedPen = CreatePen(PS_SOLID, 1, RGB(255, 0, 0));
+        HBRUSH hBlueBrush = CreateSolidBrush(RGB(0, 0, 255));
 
-            HPEN hOldPen = (HPEN)SelectObject(hdc, hRedPen);
-            HBRUSH hOldBrush = (HBRUSH)SelectObject(hdc, hBlueBrush);
+        HPEN hOldPen = (HPEN)SelectObject(hdc, hRedPen);
+        HBRUSH hOldBrush = (HBRUSH)SelectObject(hdc, hBlueBrush);
 
-            Rectangle(hdc
-                , g_ptObjPos.x - g_ptObjScale.x / 2
-                , g_ptObjPos.y - g_ptObjScale.y / 2
-                , g_ptObjPos.x + g_ptObjScale.x / 2
-                , g_ptObjPos.y + g_ptObjScale.y / 2);
+        Rectangle(hdc
+            , g_ptObjPos.x - g_ptObjScale.x / 2
+            , g_ptObjPos.y - g_ptObjScale.y / 2
+            , g_ptObjPos.x + g_ptObjScale.x / 2
+            , g_ptObjPos.y + g_ptObjScale.y / 2);
 
-            SelectObject(hdc, hOldPen);
-            SelectObject(hdc, hOldBrush);
+        SelectObject(hdc, hOldPen);
+        SelectObject(hdc, hOldBrush);
 
-            EndPaint(hWnd, &ps);
-        }
+        EndPaint(hWnd, &ps);
+    }
         break;
     case WM_KEYDOWN:
     {
@@ -144,13 +143,11 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         InvalidateRect(hWnd, nullptr, true);
     }
         break;
-    //new
     case WM_LBUTTONDOWN:
     {
         g_x = LOWORD(lParam);
         g_y = HIWORD(lParam);
 
-        // 텍스트 출력
         HDC hdc = GetDC(hWnd);
 
         wchar_t szText[256];
