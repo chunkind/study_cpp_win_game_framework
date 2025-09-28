@@ -1,4 +1,7 @@
-﻿#include "framework.h"
+﻿//new
+#include "pch.h"
+
+#include "framework.h"
 #include "client.h"
 
 HINSTANCE hInst;
