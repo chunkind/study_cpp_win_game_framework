@@ -77,6 +77,10 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
     return TRUE;
 }
 
+//new
+int g_x = 0;
+int g_y = 0;
+
 POINT g_ptObjPos = { 500, 300 };
 POINT g_ptObjScale = { 100, 100 };
 
@@ -138,6 +142,22 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             break;
         }
         InvalidateRect(hWnd, nullptr, true);
+    }
+        break;
+    //new
+    case WM_LBUTTONDOWN:
+    {
+        g_x = LOWORD(lParam);
+        g_y = HIWORD(lParam);
+
+        // 텍스트 출력
+        HDC hdc = GetDC(hWnd);
+
+        wchar_t szText[256];
+        wsprintf(szText, L"Mouse Position: (%d, %d)", g_x, g_y);
+        TextOut(hdc, g_x + 10, g_y + 10, szText, lstrlen(szText));
+
+        ReleaseDC(hWnd, hdc);
     }
         break;
 
