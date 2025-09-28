@@ -77,11 +77,19 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
     return TRUE;
 }
 
-int g_x = 0;
-int g_y = 0;
+//old
+//int g_x = 0;
+//int g_y = 0;
 
 POINT g_ptObjPos = { 500, 300 };
 POINT g_ptObjScale = { 100, 100 };
+
+//new
+POINT g_ptLT; // 좌상단
+POINT g_ptRB; // 우하단
+
+//new
+bool bLbtnDown = false;
 
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
@@ -111,6 +119,14 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         HPEN hOldPen = (HPEN)SelectObject(hdc, hRedPen);
         HBRUSH hOldBrush = (HBRUSH)SelectObject(hdc, hBlueBrush);
 
+        //new
+        if (bLbtnDown)
+        {
+            Rectangle(hdc
+                , g_ptLT.x , g_ptLT.y
+                , g_ptRB.x , g_ptRB.y);
+        }
+
         Rectangle(hdc
             , g_ptObjPos.x - g_ptObjScale.x / 2
             , g_ptObjPos.y - g_ptObjScale.y / 2
@@ -119,6 +135,9 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 
         SelectObject(hdc, hOldPen);
         SelectObject(hdc, hOldBrush);
+
+        DeleteObject(hRedPen);
+        DeleteObject(hBlueBrush);
 
         EndPaint(hWnd, &ps);
     }
@@ -145,7 +164,8 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         break;
     case WM_LBUTTONDOWN:
     {
-        g_x = LOWORD(lParam);
+        //old
+        /*g_x = LOWORD(lParam);
         g_y = HIWORD(lParam);
 
         HDC hdc = GetDC(hWnd);
@@ -154,10 +174,34 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         wsprintf(szText, L"Mouse Position: (%d, %d)", g_x, g_y);
         TextOut(hdc, g_x + 10, g_y + 10, szText, lstrlen(szText));
 
-        ReleaseDC(hWnd, hdc);
+        ReleaseDC(hWnd, hdc);*/
+        //new
+        g_ptLT.x = LOWORD(lParam);
+        g_ptLT.y = HIWORD(lParam);
+        bLbtnDown = true;
     }
         break;
+    //new
+    case WM_MOUSEMOVE:
+    {
+        g_ptRB.x = LOWORD(lParam);
+        g_ptRB.y = HIWORD(lParam);
+        InvalidateRect(hWnd, nullptr, true);
+    }
+        break;
+    //new
+    case WM_LBUTTONUP:
+    {
+        g_ptObjPos.x = (g_ptLT.x + g_ptRB.x) / 2;
+        g_ptObjPos.y = (g_ptLT.y + g_ptRB.y) / 2;
 
+        g_ptObjScale.x = abs(g_ptRB.x - g_ptLT.x);
+        g_ptObjScale.y = abs(g_ptRB.y - g_ptLT.y);
+
+        bLbtnDown = false;
+        InvalidateRect(hWnd, nullptr, true);
+    }
+        break;
     case WM_DESTROY:
         PostQuitMessage(0);
         break;
