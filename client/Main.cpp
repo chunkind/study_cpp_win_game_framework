@@ -8,6 +8,9 @@ ATOM                MyRegisterClass(HINSTANCE hInstance);
 BOOL                InitInstance(HINSTANCE, int);
 LRESULT CALLBACK    WndProc(HWND, UINT, WPARAM, LPARAM);
 
+//new
+int count = 0;
+
 int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
                      _In_opt_ HINSTANCE hPrevInstance,
                      _In_ LPWSTR    lpCmdLine,
@@ -25,12 +28,24 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
     MSG msg;
 
+    //new
+    // 타이머를 이용해서 자동 그려지기 :: 30프레임
+    SetTimer(g_hWnd, 1234, 1000 / 30, nullptr);
+
     while (GetMessage(&msg, nullptr, 0, 0))
     {
         if (!TranslateAccelerator(msg.hwnd, hAccelTable, &msg))
         {
             TranslateMessage(&msg);
             DispatchMessage(&msg);
+        }
+
+        //new
+        // 타이머 삭제
+        count++;
+        if (count > 1000)
+        {
+            KillTimer(g_hWnd, 1234);
         }
     }
 
@@ -152,31 +167,36 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         switch (wParam)
         {
         case VK_UP:
-            for (size_t i = 0; i < g_vecInfo.size(); ++i)
+            //old
+            /*for (size_t i = 0; i < g_vecInfo.size(); ++i)
             {
                 g_vecInfo[i].g_ptObjPos.y -= 10;
-            }
+            }*/
             break;
         case VK_DOWN:
-            for (size_t i = 0; i < g_vecInfo.size(); ++i)
+            //old
+            /*for (size_t i = 0; i < g_vecInfo.size(); ++i)
             {
                 g_vecInfo[i].g_ptObjPos.y += 10;
-            }
+            }*/
             break;
         case VK_LEFT:
-            for (size_t i = 0; i < g_vecInfo.size(); ++i)
+            //old
+            /*for (size_t i = 0; i < g_vecInfo.size(); ++i)
             {
                 g_vecInfo[i].g_ptObjPos.x -= 10;
-            }
+            }*/
             break;
         case VK_RIGHT:
-            for (size_t i = 0; i < g_vecInfo.size(); ++i)
+            //old
+            /*for (size_t i = 0; i < g_vecInfo.size(); ++i)
             {
                 g_vecInfo[i].g_ptObjPos.x += 10;
-            }
+            }*/
             break;
         }
-        InvalidateRect(hWnd, nullptr, true);
+        //old
+        /*InvalidateRect(hWnd, nullptr, true);*/
     }
         break;
     case WM_LBUTTONDOWN:
@@ -190,7 +210,8 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
     {
         g_ptRB.x = LOWORD(lParam);
         g_ptRB.y = HIWORD(lParam);
-        InvalidateRect(hWnd, nullptr, true);
+        //old
+        //InvalidateRect(hWnd, nullptr, true);
     }
         break;
     case WM_LBUTTONUP:
@@ -204,9 +225,20 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         g_vecInfo.push_back(info);
 
         bLbtnDown = false;
+        //old
+        //InvalidateRect(hWnd, nullptr, true);
+    }
+        break;
+    //new
+    case WM_TIMER:
+    {
+        wchar_t szBuff[50] = {};
+        swprintf_s(szBuff, L"10초 동안 카운트 : %d", count);
+        SetWindowText(hWnd, szBuff);
         InvalidateRect(hWnd, nullptr, true);
     }
         break;
+
     case WM_DESTROY:
         PostQuitMessage(0);
         break;
