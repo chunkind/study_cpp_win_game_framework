@@ -27,9 +27,15 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
     MSG msg;
 
-    SetTimer(g_hWnd, 1234, 1000 / 30, nullptr);
+    //new
+    DWORD dwPrevCount = GetTickCount();
+    DWORD dwAccCount = 0;
 
-    while (GetMessage(&msg, nullptr, 0, 0))
+    //old
+    //SetTimer(g_hWnd, 1234, 1000 / 30, nullptr);
+
+    //old
+    /*while (GetMessage(&msg, nullptr, 0, 0))
     {
         if (!TranslateAccelerator(msg.hwnd, hAccelTable, &msg))
         {
@@ -41,6 +47,40 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
         if (count > 1000)
         {
             KillTimer(g_hWnd, 1234);
+        }
+    }*/
+    //new
+    while (true)
+    {
+        // true: 메세지가 있다면, false: 메세지가 없다면
+        if (PeekMessage(&msg, nullptr, 0, 0, PM_REMOVE))
+        {
+            int iTime = GetTickCount();
+
+            if (WM_QUIT == msg.message)
+                break;
+
+            TranslateMessage(&msg);
+            DispatchMessage(&msg);
+
+            dwAccCount += (GetTickCount() - iTime);
+        }
+        // 메세지가 발생하지 않는 대부분의 시간
+        else
+        {
+            DWORD dwCurCount = GetTickCount();
+            if (dwCurCount - dwPrevCount > 1000)
+            {
+                float fRatio = (float)dwAccCount / 1000.f;
+
+                wchar_t szBuff[50] = {};
+
+                swprintf_s(szBuff, L"비율 : %f", fRatio);
+                SetWindowText(g_hWnd, szBuff);
+
+                dwPrevCount = dwCurCount;
+                dwAccCount = 0;
+            }
         }
     }
 
@@ -198,15 +238,15 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         bLbtnDown = false;
     }
         break;
-    case WM_TIMER:
+    //new
+    /*case WM_TIMER:
     {
         wchar_t szBuff[50] = {};
         swprintf_s(szBuff, L"10초 동안 카운트 : %d", count);
         SetWindowText(hWnd, szBuff);
         InvalidateRect(hWnd, nullptr, true);
     }
-        break;
-
+        break;*/
     case WM_DESTROY:
         PostQuitMessage(0);
         break;
