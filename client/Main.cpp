@@ -8,7 +8,8 @@ ATOM                MyRegisterClass(HINSTANCE hInstance);
 BOOL                InitInstance(HINSTANCE, int);
 LRESULT CALLBACK    WndProc(HWND, UINT, WPARAM, LPARAM);
 
-int count = 0;
+//old
+//int count = 0;
 
 int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
                      _In_opt_ HINSTANCE hPrevInstance,
@@ -27,35 +28,16 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
     MSG msg;
 
-    //new
-    DWORD dwPrevCount = GetTickCount();
-    DWORD dwAccCount = 0;
-
     //old
-    //SetTimer(g_hWnd, 1234, 1000 / 30, nullptr);
+    /*DWORD dwPrevCount = GetTickCount();
+    DWORD dwAccCount = 0;*/
 
-    //old
-    /*while (GetMessage(&msg, nullptr, 0, 0))
-    {
-        if (!TranslateAccelerator(msg.hwnd, hAccelTable, &msg))
-        {
-            TranslateMessage(&msg);
-            DispatchMessage(&msg);
-        }
-
-        count++;
-        if (count > 1000)
-        {
-            KillTimer(g_hWnd, 1234);
-        }
-    }*/
-    //new
     while (true)
     {
-        // true: 메세지가 있다면, false: 메세지가 없다면
         if (PeekMessage(&msg, nullptr, 0, 0, PM_REMOVE))
         {
-            int iTime = GetTickCount();
+            //old
+            //int iTime = GetTickCount();
 
             if (WM_QUIT == msg.message)
                 break;
@@ -63,12 +45,13 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
             TranslateMessage(&msg);
             DispatchMessage(&msg);
 
-            dwAccCount += (GetTickCount() - iTime);
+            //old
+            //dwAccCount += (GetTickCount() - iTime);
         }
-        // 메세지가 발생하지 않는 대부분의 시간
         else
         {
-            DWORD dwCurCount = GetTickCount();
+            //old
+            /*DWORD dwCurCount = GetTickCount();
             if (dwCurCount - dwPrevCount > 1000)
             {
                 float fRatio = (float)dwAccCount / 1000.f;
@@ -80,7 +63,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
                 dwPrevCount = dwCurCount;
                 dwAccCount = 0;
-            }
+            }*/
         }
     }
 
@@ -127,21 +110,22 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
     return TRUE;
 }
 
-#include <vector>
-using std::vector;
-
-struct tObjInfo
-{
-    POINT g_ptObjPos;
-    POINT g_ptObjScale;
-};
-
-vector<tObjInfo> g_vecInfo;
-
-POINT g_ptLT;
-POINT g_ptRB;
-
-bool bLbtnDown = false;
+//old
+//#include <vector>
+//using std::vector;
+//
+//struct tObjInfo
+//{
+//    POINT g_ptObjPos;
+//    POINT g_ptObjScale;
+//};
+//
+//vector<tObjInfo> g_vecInfo;
+//
+//POINT g_ptLT;
+//POINT g_ptRB;
+//
+//bool bLbtnDown = false;
 
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
@@ -165,7 +149,8 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         PAINTSTRUCT ps;
         HDC hdc = BeginPaint(hWnd, &ps);
 
-        HPEN hRedPen = CreatePen(PS_SOLID, 1, RGB(255, 0, 0));
+        //old
+        /*HPEN hRedPen = CreatePen(PS_SOLID, 1, RGB(255, 0, 0));
         HBRUSH hBlueBrush = CreateSolidBrush(RGB(0, 0, 255));
 
         HPEN hOldPen = (HPEN)SelectObject(hdc, hRedPen);
@@ -192,13 +177,14 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         SelectObject(hdc, hOldBrush);
 
         DeleteObject(hRedPen);
-        DeleteObject(hBlueBrush);
+        DeleteObject(hBlueBrush);*/
 
         EndPaint(hWnd, &ps);
     }
         break;
     case WM_KEYDOWN:
-    {
+    //old
+    /*{
         switch (wParam)
         {
         case VK_UP:
@@ -210,23 +196,26 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         case VK_RIGHT:
             break;
         }
-    }
+    }*/
         break;
     case WM_LBUTTONDOWN:
-    {
+    //old
+    /*{
         g_ptLT.x = LOWORD(lParam);
         g_ptLT.y = HIWORD(lParam);
         bLbtnDown = true;
-    }
+    }*/
         break;
     case WM_MOUSEMOVE:
-    {
+    //old
+    /*{
         g_ptRB.x = LOWORD(lParam);
         g_ptRB.y = HIWORD(lParam);
-    }
+    }*/
         break;
     case WM_LBUTTONUP:
-    {
+    //old
+    /*{
         tObjInfo info = {};
         info.g_ptObjPos.x = (g_ptLT.x + g_ptRB.x) / 2;
         info.g_ptObjPos.y = (g_ptLT.y + g_ptRB.y) / 2;
@@ -236,17 +225,8 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         g_vecInfo.push_back(info);
 
         bLbtnDown = false;
-    }
+    }*/
         break;
-    //new
-    /*case WM_TIMER:
-    {
-        wchar_t szBuff[50] = {};
-        swprintf_s(szBuff, L"10초 동안 카운트 : %d", count);
-        SetWindowText(hWnd, szBuff);
-        InvalidateRect(hWnd, nullptr, true);
-    }
-        break;*/
     case WM_DESTROY:
         PostQuitMessage(0);
         break;
