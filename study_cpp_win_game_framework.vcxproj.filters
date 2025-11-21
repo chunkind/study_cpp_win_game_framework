@@ -19,7 +19,7 @@
     <ClInclude Include="Resource.h">
       <Filter>Default</Filter>
     </ClInclude>
-    <ClInclude Include="study_cpp_win_game_framework.h">
+    <ClInclude Include="client.h">
       <Filter>Default</Filter>
     </ClInclude>
     <ClInclude Include="targetver.h">
@@ -27,7 +27,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="study_cpp_win_game_framework.rc">
+    <ResourceCompile Include="client.rc">
       <Filter>Default\리소스 파일</Filter>
     </ResourceCompile>
   </ItemGroup>
@@ -35,11 +35,11 @@
     <Image Include="small.ico">
       <Filter>Default\리소스 파일</Filter>
     </Image>
-    <Image Include="study_cpp_win_game_framework.ico">
+    <Image Include="client.ico">
       <Filter>Default\리소스 파일</Filter>
     </Image>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Main.cpp" />
   </ItemGroup>
 </Project>
